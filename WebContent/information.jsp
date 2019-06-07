@@ -16,8 +16,8 @@
 <script src="js/zepto.min.js"></script>
 </head>
 <body style="background-color:white;">
-<!-- <div id="box">
-<div id="container" style="border:2px;border-radius:16px 16px 0 0;border-style:solid;border-color:#cccccc;">
+ <!-- <div id="box">
+ <div id="container" style="border:2px;border-radius:16px 16px 0 0;border-style:solid;border-color:#cccccc;">
 <div style="width:100%;height:58px;">
 <div style="margin-left:20px;margin-top:7px;float:left">
 <img src="images/xiong.png" width="55px">
@@ -64,7 +64,7 @@
     </div>
   </section>
   </div>
-  </div> -->
+  </div>  -->
 <div class="container" style="height:700px;border:2px;border-radius:16px 16px 0 0;border-style:solid;border-color:#cccccc;">
 	<div class="row clearfix">
 		<div class="col-md-12 column">

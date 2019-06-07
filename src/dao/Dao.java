@@ -10,7 +10,7 @@ ResultSet rs = null;
 public Dao() {
 try {
 Class.forName("com.mysql.jdbc.Driver");
-con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_vote","root","root");
+con = DriverManager.getConnection("jdbc:mysql://localhost:3306/fruit_sale","root","root");
 stat = con.createStatement();
 } catch (Exception e) {
 // TODO: handle exception

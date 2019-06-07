@@ -5,14 +5,21 @@
         "http://struts.apache.org/dtds/struts-2.5.dtd">
 
 <struts>
-<package name="com" extends="struts-default">
-<action name="login" class="com.UserAction" method="login">
-<result name="loginout">/error.jsp</result>
-<result name="loginin">/welcome.jsp</result>
-</action>
-<action name="regist" class="com.UserAction" method="regist">
-<result name="error">/error.jsp</result>
-<result name="success">/welcome.jsp</result>
-</action>
-</package>
-</struts>
+
+		        <!--Configuration for the default packet.-->
+
+		<package name="default"  extends="struts-default">
+
+			<action name="loginAction" class="edu.login.Action.LoginAction">
+
+				<result name="success">/boot.jsp</result>
+
+				<result name="input">/index.jsp</result>
+
+				<result name="error">/index.jsp</result>
+
+			</action>
+			
+	</package>
+
+</struts> 

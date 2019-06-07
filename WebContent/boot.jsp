@@ -122,7 +122,7 @@
 								width="29px" height="31px">
 						</div>
 						<ul id="my" style="display:none;">
-							<a href="http://localhost:8080/fruit/information.jsp" target="content" style="text-decoration:none;"><li class="information">修改信息></li></a>
+							<a href="http://localhost:8080/error/information.jsp" target="content" style="text-decoration:none;"><li class="information">修改信息></li></a>
 							<a href="#" target="content" style="text-decoration:none;"><li class="order">我的订单></li></a>
 							<a href="#" target="content" style="text-decoration:none;"><li class="help">帮助中心></li></a>
 						</ul>
