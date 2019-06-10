@@ -6,24 +6,27 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.interceptor.ServletRequestAware;
 
-import JavaBean.MyMessBean;
+import com.opensymphony.xwork2.ActionContext;
+
 import JavaBean.UserNameBean;
+import Model.user;
 
 public class DB implements ServletRequestAware {
 
 	private String driverName = "com.mysql.jdbc.Driver";
 
-	private String url = "jdbc:mysql://localhost:3306/fruit";
+	private String url = "jdbc:mysql://localhost:3306/fruit_sale";
 
 	private String username = "root";
 
-	private String password = "root";
+	private String password = "1708030255";
 
 	private Connection conn = null;
 
@@ -119,7 +122,7 @@ public class DB implements ServletRequestAware {
 
 		try {
 
-			String sql = "select * from user where userName='" + userName + "'";
+			String sql = "select * from userinfo where userName='" + userName + "'";
 
 			st = getStatement();
 
@@ -142,34 +145,36 @@ public class DB implements ServletRequestAware {
 			ArrayList listName = null;
 
 			HttpSession session = request.getSession();
-
+			
 			listName = new ArrayList();
 
 			rs = selectMess(request, userName);
 
 			while (rs.next()) {
 
-				MyMessBean mess = new MyMessBean();
-
-				mess.setName(rs.getString("name"));
+				user mess = new user();
+				
+				mess.setUserID(rs.getString("userID"));
+				
+				mess.setUserName(rs.getString("userName"));
+				
+				mess.setPassword(rs.getString("password"));
 
 				mess.setSex(rs.getString("sex"));
 
-				mess.setBirth(rs.getString("birth"));
+				mess.setUserPhone(rs.getString("userPhone"));
 
-				mess.setEdu(rs.getString("edu"));
+				mess.setUserPress(rs.getString("userPress"));
 
-				mess.setWork(rs.getString("work"));
+				mess.setRole(rs.getString("role"));
 
-				mess.setPhone(rs.getString("phone"));
 
-				mess.setPlace(rs.getString("place"));
-
-				mess.setEmail(rs.getString("email"));
 
 				listName.add(mess);
 
 				session.setAttribute("MyMess", listName);
+				
+				session.setAttribute("role",rs.getString("role")); 
 
 			}
 
@@ -191,7 +196,7 @@ public class DB implements ServletRequestAware {
 
 		try {
 
-			String sql = "select * from user where userName='" + userName
+			String sql = "select * from userinfo where userName='" + userName
 
 					+ "' and password='" + password + "'";
 
@@ -297,7 +302,7 @@ public class DB implements ServletRequestAware {
 
 			} else {
 
-				String sql = "insert into user values('" + userName + "','"
+				String sql = "insert into userinfo values('" + userName + "','"
 
 						+ password + "','" + name + "','" + sex + "','" + birth
 

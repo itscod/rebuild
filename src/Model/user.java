@@ -3,6 +3,7 @@ package Model;
 public class user {
 	public String userID;
 	public String userName;
+	public String password;
 	public String sex;
 	public String userPhone;
 	public String userPress;
@@ -42,5 +43,12 @@ public class user {
 	}
 	public void setRole(String role) {
 		this.role = role;
+	}
+	public void setPassword(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+	public String getPassword() {
+		return password;
 	}
 }

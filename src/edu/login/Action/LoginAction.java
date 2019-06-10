@@ -2,14 +2,16 @@
 package edu.login.Action;
 
 import java.sql.ResultSet;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.interceptor.ServletRequestAware;
 
-import DBJavaBean.DB;
-
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+
+import DBJavaBean.DB;
 
 public class LoginAction extends ActionSupport implements ServletRequestAware {
 
@@ -122,16 +124,29 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 	public String execute() throws Exception{
 
 		DB mysql=new DB();
+		
+		String role = session.getAttribute("role").toString(); 
 
 		String add=mysql.addList(request,this.getUserName());
 
 		if(add.equals("ok")){
 
-			message=SUCCESS;
+			if(role == "管理员"){
+
+				return "adminLogin";
+				
+			}else {
+				
+				return "userLogin";
+				
+			}
+			
+			//记录用户登录信息 
+			Map<String, Object> attibutes = ActionContext.getContext().getSession();
+            attibutes.put("userName", userName); 
+            attibutes.put("password", password);
 
 		}
-
-		return message;
 
 	}
 

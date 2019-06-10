@@ -67,7 +67,7 @@
 	String role = null;
 	String name=null;
 	if (session.getAttribute("role") != null) {
-		name= (String) session.getAttribute("username");
+		name= (String) session.getAttribute("userName");
 		role = (String) session.getAttribute("role");
 	}
 	%>
@@ -81,20 +81,8 @@
 			<div class="col-md-7 column" style="text-align:center;font-size:13px">
 				
 				你好！
-				<button type="button" class="btn btn-link" id="login"
-							data-toggle="modal" data-target="#login" style="color: #000;">
-							<span class="glyphicon glyphicon-log-in"></span>[请登录]
-				</button>
-				<button type="button" class="btn btn-link" id="register" style="color: #000;"
-							data-toggle="modal" data-target="#register">[免费注册]
-				</button>
-				&nbsp;|&nbsp;
-				<a href="invalidate.jsp">注销</a>
-				&nbsp;&nbsp;			
-				<%if(role!=null&&role.equals("管理员")) {%>
-					<a href="backstageMS.jsp">后台管理</a>
-				<%}%>
-			
+				${userName}				&nbsp;|&nbsp;
+				<a href="logout.action">注销</a>
 			</div>
 		</div>
 
@@ -162,8 +150,6 @@
 								target="_blank">？</a></li>
 							<li class="nav-item"><a href="http://sc.chinaz.com/"
 								target="_blank">？</a></li>
-							<li class="nav-item"><a href="http://sc.chinaz.com/"
-								target="_blank">？</a></li>
 						</ul>
 						<!--移动的滑动-->
 						<div class="move-bg"></div>
@@ -186,110 +172,6 @@
 		<br/><br>
 	</div>
 	
-	<!-- -----------------------登录模态框（Modal）-------------------------- -->
-	<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form action="" method="post">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="myModalLabel">用户登录</h4>
-					</div>
-					<div class="modal-body">
-						<p>
-							账号：<input type="text" placeholder="填写用户名" name="username"/>
-						</p>
-						<p>
-							密码：<input type="password" name="password"/>"
-						</p>
-					</div>
-					<div class="modal-footer">
-						<input type="submit" value="Login"/>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	<!-- -----------------------------end--------------------------------- -->
-
-	<!-- -------------------------注册模态框（Modal）-------------------------- -->
-	<div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">用户注册</h4>
-				</div>
-				<form action="" method="post">
-				<table border="0" style="margin: 0 0 0 25%">
-					<div class="modal-body">
-						<tr>
-							<td>用户名：</td>
-							<td>
-								<input type="text" name="username" id="username"/>
-								<span id="username_errorTips"></span>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								密&nbsp;&nbsp;码：
-							</td>
-							<td>
-								<input name="password" type="password" maxlength="10" id="passw" />
-							    <span id="pass_errorTips"></span>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								确认密码：
-							</td>
-							<td>
-								<input name="passw_confirm" type="password" maxlength="10" id="passw_confirm" />
-								<span id="passw_errorTips"></span>
-							</td>
-						</tr>
-						<tr>
-							<td>性别：</td>
-							<td>
-								<input name="sex1" type="radio"  checked />男
-								<input name="sex2" type="radio" />女
-							</td>
-						</tr>
-						<tr>
-							<td>联系电话：</td>
-							<td>
-								<input type="text" id="phone" name="userphone"/>
-								<span id="phone_errorTips"></span>
-							</td>
-						</tr>
-						<tr>
-							<td><input type="text" id="code" class="txt" placeholder="输入验证码"></td>
-							<!--验证码验证-->
-							<td>
-								<button class="btn btn-small get-code" onclick="getCode(this)" id="J_getCode">获取验证码</button>
-			            		<button class="btn btn-small reset-code" id="J_resetCode" style="display:none;">
-			            		<span id="J_second">60</span>秒后重发</button>
-			            		<span id="code_errorTips"></span>
-							</td>
-							<!--end-->
-						</tr>
-						<tr>
-							<td>地址：</td>
-							<td>
-								<input type="text" name="userpress" id="press"/>
-								<span id="press_errorTips"></span>
-							</td>
-						</tr>
-					</div>
-					<div class="modal-footer">
-                		<button type="submit" class="btn btn-primary">提交更改</button>
-           		 	</div>
-				</table>
-				</form>
-			</div>
-		</div>
-	</div>
-	<!-- -----------------------------end--------------------------------- -->
 </body>
 </html>
 <style>

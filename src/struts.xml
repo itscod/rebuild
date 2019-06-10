@@ -12,11 +12,29 @@
 
 			<action name="loginAction" class="edu.login.Action.LoginAction">
 
-				<result name="success">/boot.jsp</result>
+				<result name="userLogin">/boot.jsp</result>
+				
+				<result name="adminLogin">/backstageMS.jsp</result>
 
-				<result name="input">/index.jsp</result>
+				<result name="input">/login.jsp</result>
 
-				<result name="error">/index.jsp</result>
+				<result name="error">/login.jsp</result>
+
+			</action>
+			
+			<action name="registerAction" class="zzm.action.RegisterAction" method="RegisterInsert">
+
+				<result name="register_success">/login.jsp</result>
+
+				<result name="register_default">/register.jsp</result>
+
+				<result name="error">/register.jsp</result>
+
+			</action>
+			
+			<action name="logout" class="zzm.action.LogoutAction">
+
+				<result name="success">/login.jsp</result>
 
 			</action>
 			

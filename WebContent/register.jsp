@@ -1,4 +1,3 @@
-
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 
 <%
@@ -12,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <%=request.getContextPath() %>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML>
 
 <html>
 
@@ -20,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
  
 
-    <title>登录</title>
+    <title>注册</title>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -51,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		.container{
 			width:450px;
 		}
-        .login {
+        .register,.reset{
             color: white;
             height: 38px;
             width: 170px;
@@ -61,12 +60,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	font-size: 20px;
         	margin-left:80px;
         }
-        .cut{
-        	float:right;
-        	font-size:13px;
-        	margin-right:150px;
-        	margin-top:5px;
-        }
+        
     </style>
 
   </head>
@@ -80,13 +74,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    <div class="row clearfix">
 		    	<div class="col-md-12 column">
 		    		<div>
-		    			<label class="title">登录</label>&nbsp;&nbsp;&nbsp;&nbsp;
-		    			<label class="cut">>如未注册，<a href="register.jsp">请注册</a></label>
+		    			<label class="title">注册</label>&nbsp;&nbsp;&nbsp;&nbsp;
+		    			<label class="cut">>如已注册，<a href="login.jsp">请登录</a></label>
 		    		</div>
 				    <div class="row">
-				    	<form class="form-horizontal col-md-offset-4 col-md-4" action="loginAction" method="post">
+				    	<form class="form-horizontal col-md-offset-4 col-md-4" action="registerAction" method="post">
 				            <div class="form-group">
-				                <label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
+				                <label for="inputText3" class="col-sm-2 control-label">用户名</label>
 				                <div class="col-sm-10">
 				                    <input type="text" class="form-control" name="userName" placeholder="请输入用户名">
 				                </div>
@@ -98,20 +92,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				                </div>
 				            </div>
 				            <div class="form-group">
-				                <div class="col-sm-offset-2 col-sm-10">
-				                    <div class="checkbox">
-				                        <label style="margin-right:50px">
-				                            <input type="checkbox">记住密码
-				                        </label>
-				                        <label>
-				                        	<a href="#">忘记密码</a>
-				                        </label>
-				                    </div>
+				                <label for="inputPassword4" class="col-sm-2 control-label">确认密码</label>
+				                <div class="col-sm-10">
+				                    <input type="password" class="form-control" id="passw_confirm" name="passw_confirm" placeholder="请再次输入密码">
+				                </div>
+				            </div>
+				            <div class="form-group">
+				                <label for="inputSex" class="col-sm-2 control-label">性别</label>
+				                <div class="col-sm-10">
+				                    <input name="sex" type="radio" value="男" checked />男
+									<input name="sex" type="radio" value="女"/>女
+				                </div>
+				            </div>
+				            <div class="form-group">
+				                <label for="inputText" class="col-sm-2 control-label">联系电话</label>
+				                <div class="col-sm-10">
+				                    <input type="text" class="form-control" id="inputText" name="userPhone" placeholder="请输入联系电话">
+				                </div>
+				            </div>
+				            <div class="form-group">
+				                <label for="inputText" class="col-sm-2 control-label">地址</label>
+				                <div class="col-sm-10">
+				                    <input type="text" class="form-control" id="inputText" name="userPress" placeholder="请输入地址">
 				                </div>
 				            </div>
 				            <div class="form-group">
 				                <div class="col-sm-offset-2 col-sm-10">
-				                    <button type="submit" class="btn btn-default login ">登录</button>
+				                	<button type="reset" class="btn btn-default reset ">重填</button>
+				                	<button type="submit" class="col-sm-10 btn btn-default register">注册</button>
 				                </div>
 				            </div>
 				        </form>

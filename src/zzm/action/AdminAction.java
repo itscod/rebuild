@@ -1,5 +1,5 @@
 package zzm.action;
 
-public class a {
+public class AdminAction {
 
 }
