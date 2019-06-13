@@ -5,7 +5,7 @@
 	 <head>
 	  <meta charset="utf-8">
 	  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	  <title>Layui后台管理</title>
+	  <title>F-R-U-I-T BG</title>
 	  <meta name="renderer" content="webkit">
 	  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -21,7 +21,7 @@
 	    <div class="layui-logo"><a href="backstageMS.jsp" class="layui-logo" style="font-size:20px">后台管理</a></div>
 	    <!-- 头部区域（可配合layui已有的水平导航） -->
 	    <ul class="layui-nav layui-layout-left">
-	      <li class="layui-nav-item"><a href="boot.jsp">返回商城</a></li>
+	      <li class="layui-nav-item"><a href="bootAdmin.jsp">返回商城</a></li>
 	    </ul>
 	    <ul class="layui-nav layui-layout-right">
 	      <li class="layui-nav-item">

@@ -1,15 +1,17 @@
 
-package JavaBean;
+package zzm.model;
 
  
 
-public class UserNameBean {
+public class UserName {
 
 	private String userName;
 
 	private String password;
+	
+	private String role;
 
-	public UserNameBean(){
+	public UserName(){
 
 		
 
@@ -37,6 +39,14 @@ public class UserNameBean {
 
 		this.password = password;
 
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	

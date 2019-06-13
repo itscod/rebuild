@@ -1,4 +1,4 @@
-package Model;
+package zzm.model;
 
 public class user {
 	public String userID;

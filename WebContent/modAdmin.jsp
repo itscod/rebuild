@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>修改管理员信息</title>
+<title>F-R-U-I-T BG</title>
 <link rel="stylesheet" href="css/layui.css"  media="all">
 </head>
 <body>

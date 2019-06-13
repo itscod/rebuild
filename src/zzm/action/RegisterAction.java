@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.interceptor.ServletRequestAware;
 
-import DBJavaBean.DB;
-
 import com.opensymphony.xwork2.ActionSupport;
+
+import zzm.dao.DB;
 
 public class RegisterAction extends ActionSupport implements
 

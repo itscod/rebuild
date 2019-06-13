@@ -1,17 +1,15 @@
 
-package edu.login.Action;
+package zzm.action;
 
 import java.sql.ResultSet;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.interceptor.ServletRequestAware;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-import DBJavaBean.DB;
+import zzm.dao.DB;
 
 public class LoginAction extends ActionSupport implements ServletRequestAware {
 

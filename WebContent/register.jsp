@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>注册</title>
+<title>F-R-U-I-T</title>
 <link rel="stylesheet" href="css/layui.css"  media="all">
 	<style>
 		body{

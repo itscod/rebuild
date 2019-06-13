@@ -1,22 +1,20 @@
 
-package DBJavaBean;
+package zzm.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.interceptor.ServletRequestAware;
 
-import com.opensymphony.xwork2.ActionContext;
+import zzm.model.UserName;
+import zzm.model.user;
 
-import JavaBean.UserNameBean;
-import Model.user;
 
 public class DB implements ServletRequestAware {
 
@@ -118,6 +116,7 @@ public class DB implements ServletRequestAware {
 
 	}
 
+	//通过用户查找userinfo表的方法
 	public ResultSet selectMess(HttpServletRequest request, String userName) {
 
 		try {
@@ -138,6 +137,7 @@ public class DB implements ServletRequestAware {
 
 	}
 
+	//将username查找的所有信息放入listName
 	public String myMessage(HttpServletRequest request, String userName) {
 
 		try {
@@ -173,8 +173,6 @@ public class DB implements ServletRequestAware {
 				listName.add(mess);
 
 				session.setAttribute("MyMess", listName);
-				
-				session.setAttribute("role",rs.getString("role")); 
 
 			}
 
@@ -190,6 +188,7 @@ public class DB implements ServletRequestAware {
 
 	}
 
+	//通过username，password查找userinfo的方法
 	public ResultSet selectLogin(HttpServletRequest request, String userName,
 
 			String password) {
@@ -214,6 +213,7 @@ public class DB implements ServletRequestAware {
 
 	}
 
+	//通过username，password查找是否有此用户，查出存入listname
 	public String myLogin(HttpServletRequest request, String userName) {
 
 		try {
@@ -232,7 +232,7 @@ public class DB implements ServletRequestAware {
 
 				while (rs.next()) {
 
-					UserNameBean mess=new UserNameBean();
+					UserName mess=new UserName();
 
 					mess.setUserName(rs.getString("userName"));
 
@@ -241,6 +241,8 @@ public class DB implements ServletRequestAware {
 					listName.add(mess);
 
 					session.setAttribute("userName",listName);
+					
+					session.setAttribute("role",rs.getString("role"));
 
 				}
 
@@ -262,6 +264,7 @@ public class DB implements ServletRequestAware {
 
 	}
 
+	//判断用户是否存在
 	public String addList(HttpServletRequest request, String userName) {
 
 		String sure = null;
@@ -282,6 +285,7 @@ public class DB implements ServletRequestAware {
 
 	}
 
+	//注册时插入数据的方法
 	public String insertMess(HttpServletRequest request, String userName,
 
 			String password, String sex, String userPhone,

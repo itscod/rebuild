@@ -10,7 +10,7 @@
 
 		<package name="default"  extends="struts-default">
 
-			<action name="loginAction" class="edu.login.Action.LoginAction">
+			<action name="loginAction" class="zzm.action.LoginAction">
 
 				<result name="userLogin">/boot.jsp</result>
 				
