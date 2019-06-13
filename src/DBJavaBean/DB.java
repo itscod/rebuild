@@ -284,11 +284,9 @@ public class DB implements ServletRequestAware {
 
 	public String insertMess(HttpServletRequest request, String userName,
 
-			String password, String name, String sex, String birth,
+			String password, String sex, String userPhone,
 
-			String nation, String edu, String work, String phone, String place,
-
-			String email) {
+			String userPress) {
 
 		try {
 
@@ -302,13 +300,8 @@ public class DB implements ServletRequestAware {
 
 			} else {
 
-				String sql = "insert into userinfo values('" + userName + "','"
-
-						+ password + "','" + name + "','" + sex + "','" + birth
-
-						+ "','" + nation + "','" + edu + "','" + work + "','"
-
-						+ phone + "','" + place + "','" + email + "')";
+				String sql = "insert into userinfo(userName,password,sex,userPhone,userPress,role)"+
+							" values('"+userName+"','"+password+"','"+sex+"','"+userPhone+"','"+userPress+"','用户')";
 
 				st=getStatement();
 

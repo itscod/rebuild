@@ -30,4 +30,7 @@ public class ProductAction implements ServletRequestAware{
 	public void setRequest(Map<String, Object> request) {
 		this.request=request;
 	}
+	public String execute() throws Exception {
+		return null;
+	}
 }

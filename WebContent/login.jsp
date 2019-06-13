@@ -1,125 +1,65 @@
-
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-
-<%
-
-String path = request.getContextPath();
-
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-
-%>
-
-
-<%=request.getContextPath() %>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
-
-  <head>
-
- 
-
-    <title>登录</title>
-
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-	<meta http-equiv="pragma" content="no-cache">
-
-	<meta http-equiv="cache-control" content="no-cache">
-
-	<meta http-equiv="expires" content="0">    
-
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-
-	<meta http-equiv="description" content="This is my page">
-
-	<!--
-
-	<link rel="stylesheet" type="text/css" href="styles.css">
-
-	-->
-	<link rel="stylesheet" href="css/bootstrap.min.css">  
-	<script src="js/jquery-1.9.0.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
- 	<style>
+<head>
+<meta charset="UTF-8">
+<title>登录</title>
+<link rel="stylesheet" href="css/layui.css"  media="all">
+	<style>
 		body{
 			background: url(images/login.jpg);
-			background-size: 100% 100%;
+			background-size: 100% auto;
 			background-repeat: no-repeat;
+			
+		.cut{
+			font-size: 14px;
+			text-align: center;
 		}
-		.container{
-			width:450px;
-		}
-        .login {
-            color: white;
-            height: 38px;
-            width: 170px;
-            background-color: #2b669a;
-        }
-        .title{
-        	font-size: 20px;
-        	margin-left:80px;
-        }
-        .cut{
-        	float:right;
-        	font-size:13px;
-        	margin-right:150px;
-        	margin-top:5px;
-        }
-    </style>
-
-  </head>
-
+		
+	</style>
+</head>
+<body>
+ <div style="width: 350px; position: relative; left:35%; margin-top:10%;">
+	<form class="layui-form" action="loginAction">
+		<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+		  <legend>登录</legend>
+		  &nbsp;&nbsp;&nbsp;&nbsp;<br>
+		  <label class="cut">>如未注册，<a href="register.jsp" style="color:#009688">请注册</a></label>
+		</fieldset>
+	
   
+	  <div class="layui-form-item layui-form-text">
+	    <label class="layui-form-label">用户名</label>
+	    <div class="layui-input-inline">
+	      <input class="layui-input" value="" name="userName" placeholder="请输入昵称/真实姓名"/>
+	    </div>
+	  </div>
+	  
+	  <div class="layui-form-item layui-form-text">
+	    <label class="layui-form-label">密码</label>
+	    <div class="layui-input-inline">
+	      <input class="layui-input" type="password" value="" name="password" placeholder="请输入密码"/>
+	    </div>
+	  </div>
+	  
+	  <div class="layui-form-item">
+	    <label class="layui-form-label">记住密码</label>
+	    <div class="layui-input-block">
+	      <input name="close" type="checkbox" lay-skin="switch" lay-text="ON|OFF">
+	      <a href="#" style="margin-left:50px">忘记密码</a>
+	    </div>
+	  </div>
+	  
+	  <div class="layui-form-item">
+	    <div class="layui-input-block">
+	      <button class="layui-btn" lay-filter="demo1" lay-submit="">立即登录</button>
+	    </div>
+	  </div>
+	</form>
+ </div>
+          
+<script src="js/layui.all.js" charset="utf-8"></script>
 
-  <body>
-
-		<div class="container">
-		    
-		    <div class="row clearfix">
-		    	<div class="col-md-12 column">
-		    		<div>
-		    			<label class="title">登录</label>&nbsp;&nbsp;&nbsp;&nbsp;
-		    			<label class="cut">>如未注册，<a href="register.jsp">请注册</a></label>
-		    		</div>
-				    <div class="row">
-				    	<form class="form-horizontal col-md-offset-4 col-md-4" action="loginAction" method="post">
-				            <div class="form-group">
-				                <label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
-				                <div class="col-sm-10">
-				                    <input type="text" class="form-control" name="userName" placeholder="请输入用户名">
-				                </div>
-				            </div>
-				            <div class="form-group">
-				                <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
-				                <div class="col-sm-10">
-				                    <input type="password" class="form-control" id="inputPassword3" name="password" placeholder="请输入密码">
-				                </div>
-				            </div>
-				            <div class="form-group">
-				                <div class="col-sm-offset-2 col-sm-10">
-				                    <div class="checkbox">
-				                        <label style="margin-right:50px">
-				                            <input type="checkbox">记住密码
-				                        </label>
-				                        <label>
-				                        	<a href="#">忘记密码</a>
-				                        </label>
-				                    </div>
-				                </div>
-				            </div>
-				            <div class="form-group">
-				                <div class="col-sm-offset-2 col-sm-10">
-				                    <button type="submit" class="btn btn-default login ">登录</button>
-				                </div>
-				            </div>
-				        </form>
-				    </div>
-				</div>
-			</div>
-		</div>
-
-	</body>
-
+</body>
 </html>

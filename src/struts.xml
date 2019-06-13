@@ -22,11 +22,11 @@
 
 			</action>
 			
-			<action name="registerAction" class="zzm.action.RegisterAction" method="RegisterInsert">
+			<action name="registerAction" class="zzm.action.RegisterAction">
 
 				<result name="register_success">/login.jsp</result>
 
-				<result name="register_default">/register.jsp</result>
+				<result name="input">/register.jsp</result>
 
 				<result name="error">/register.jsp</result>
 

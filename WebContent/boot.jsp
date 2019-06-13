@@ -65,9 +65,9 @@
 	<%
 		//session.removeAttribute("userID");
 	String role = null;
-	String name=null;
+	String userName=null;
 	if (session.getAttribute("role") != null) {
-		name= (String) session.getAttribute("userName");
+		userName= (String) session.getAttribute("userName");
 		role = (String) session.getAttribute("role");
 	}
 	%>
@@ -146,8 +146,11 @@
 								target="_blank">进口水果</a></li>
 							<li class="nav-item"><a href="http://sc.chinaz.com/"
 								target="_blank">国产水果</a></li>
-							<li class="nav-item"><a href="http://sc.chinaz.com/"
-								target="_blank">？</a></li>
+							<li class="nav-item">
+								<%if(role!=null&&role.equals("管理员")) {%>
+									<a href="backstageMS.jsp" target="_blank">后台管理</a>
+								<%}%>
+							</li>
 							<li class="nav-item"><a href="http://sc.chinaz.com/"
 								target="_blank">？</a></li>
 						</ul>
