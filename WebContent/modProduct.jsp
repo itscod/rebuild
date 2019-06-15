@@ -62,7 +62,7 @@
 	</form>
  
           
-<script src="layui/js/layui.js" charset="utf-8"></script>
+<script src="layui/layui.js" charset="utf-8"></script>
 <script>
     layui.use('form', function(){
         var form = layui.form;

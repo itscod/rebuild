@@ -165,14 +165,12 @@ public class DB implements ServletRequestAware {
 				mess.setUserPhone(rs.getString("userPhone"));
 
 				mess.setUserPress(rs.getString("userPress"));
-
-				mess.setRole(rs.getString("role"));
-
-
-
+				
 				listName.add(mess);
 
 				session.setAttribute("MyMess", listName);
+				
+				session.setAttribute("role",rs.getString("role"));
 
 			}
 
@@ -241,7 +239,6 @@ public class DB implements ServletRequestAware {
 					listName.add(mess);
 
 					session.setAttribute("userName",listName);
-					
 					session.setAttribute("role",rs.getString("role"));
 
 				}
@@ -249,6 +246,7 @@ public class DB implements ServletRequestAware {
 			} else {
 
 				session.setAttribute("userName", listName);
+				session.setAttribute("role",rs.getString("role"));
 
 			}
 			
@@ -308,6 +306,66 @@ public class DB implements ServletRequestAware {
 
 				String sql = "insert into userinfo(userName,password,sex,userPhone,userPress,role)"+
 							" values('"+userName+"','"+password+"','"+sex+"','"+userPhone+"','"+userPress+"','0')";
+
+				st=getStatement();
+
+				int row=st.executeUpdate(sql);
+
+				if(row==1){
+
+					String mess=myMessage(request, userName);
+
+					if(mess.equals("ok")){
+
+						sure="ok";
+
+					}else{
+
+						sure=null;
+
+					}
+
+				}else{
+
+					sure=null;		
+
+				}
+
+			}
+
+			return sure;
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+			return null;
+
+		}
+
+	}
+	
+	
+	public String insertAdmin(HttpServletRequest request, String userName,
+
+			String password, String sex, String userPhone,
+
+			String userPress) {
+
+		try {
+
+			String sure = null;
+
+			rs = selectMess(request, userName);
+
+			if (rs.next()) {
+
+				sure = "one";
+
+			} else {
+
+				String sql = "insert into userinfo(userName,password,sex,userPhone,userPress,role)"+
+							" values('"+userName+"','"+password+"','"+sex+"','"+userPhone+"','"+userPress+"','1')";
 
 				st=getStatement();
 

@@ -42,10 +42,8 @@ layui.use('table', function(){
       {type: 'checkbox', fixed: 'left'}
       ,{field:'fruitID', title:'ID', width:80, fixed: 'left', unresize: true, sort: true}
       ,{field:'fruitName', title:'水果', width:100}
-      ,{field:'kind', title:'种类', width:100}
-      ,{field:'origin', title:'产地', width:100}
-      ,{field:'price', title:'单价', width:80, unresize: true, sort: true}
-      ,{field:'introduce', title:'介绍'}
+      ,{field:'stock', title:'库存', width:100}
+      ,{field:'replenish', title:'请及时补货', width:100}
       ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
     ]]
     ,page: true

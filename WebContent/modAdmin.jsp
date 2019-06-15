@@ -32,6 +32,14 @@
 	    </div>
 	  </div>
 	  
+	  <div class="layui-form-item">
+	    <label class="layui-form-label">单选框</label>
+	    <div class="layui-input-block">
+	      <input type="radio" name="sex" value="男" title="男">
+	      <input type="radio" name="sex" value="女" title="女" checked>
+	    </div>
+	  </div>
+	  
 	  <div class="layui-form-item layui-form-text">
 	    <label class="layui-form-label">电话号码</label>
 	    <div class="layui-input-inline">
@@ -55,11 +63,11 @@
 	</form>
  
           
-<script src="layui/js/layui.js" charset="utf-8"></script>
+<script src="layui/layui.js" charset="utf-8"></script>
 <script>
 	layui.use('form',function(){
 	        var form = layui.form
-	        form.render('radio');
+	        form.render();
 	});
 </script>
 </body>

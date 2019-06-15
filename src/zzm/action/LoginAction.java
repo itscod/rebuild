@@ -2,6 +2,7 @@
 package zzm.action;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -53,31 +54,31 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 
 		// TODO Auto-generated method stub
 
-		request=hsr;
+		request = hsr;
 
 	}
 
-	public void validate(){
+	public void validate() {
 
-		if(this.getUserName()==null||this.getUserName().length()==0){
+		if (this.getUserName() == null || this.getUserName().length() == 0) {
 
 			addFieldError("username", "请输入登录名字！");
 
-		}else{
+		} else {
 
-			try{
+			try {
 
-				DB mysql=new DB();
+				DB mysql = new DB();
 
-				rs=mysql.selectMess(request, this.getUserName());
+				rs = mysql.selectMess(request, this.getUserName());
 
-				if(!rs.next()){
+				if (!rs.next()) {
 
 					addFieldError("username", "此用户尚未注册！");
 
 				}
 
-			}catch(Exception e){
+			} catch (Exception e) {
 
 				e.printStackTrace();
 
@@ -85,31 +86,31 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 
 		}
 
-		if(this.getPassword()==null||this.getPassword().length()==0){
+		if (this.getPassword() == null || this.getPassword().length() == 0) {
 
 			addFieldError("password", "请输入登录密码！");
 
-		}else{
+		} else {
 
-			try{
+			try {
 
-				DB mysql=new DB();
+				DB mysql = new DB();
 
-				rs=mysql.selectMess(request, this.getUserName());
+				rs = mysql.selectMess(request, this.getUserName());
 
-				if(rs.next()){
+				if (rs.next()) {
 
-					rs=mysql.selectLogin(request, this.getUserName(), this.getPassword());
+					rs = mysql.selectLogin(request, this.getUserName(), this.getPassword());
 
 				}
 
-				if(!rs.next()){
+				if (!rs.next()) {
 
 					addFieldError("password", "登录密码错误！");
 
 				}
 
-			}catch(Exception e){
+			} catch (Exception e) {
 
 				e.printStackTrace();
 
@@ -119,26 +120,26 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 
 	}
 
-	public String execute() throws Exception{
+	public String execute() throws Exception {
 
-		DB mysql=new DB();
+		DB mysql = new DB();
 		
-		String role = (String)request.getSession().getAttribute("role");
+		String role = (String) request.getSession().getAttribute("role");
 
-		String add=mysql.addList(request,this.getUserName());
+		String add = mysql.addList(request, this.getUserName());
+		//判断是否为管理员
+		if (add.equals("ok")) {
 
-		if(add.equals("ok")){
-			
-			if(role!=null || role.equals("0")){
-					
-				message="adminLogin";
-				
-			}else {
-				
-				message="userLogin";
-				
-			}
-			System.out.println(message);
+			 if(role.equals("0")){
+			 
+			 message="adminLogin";
+			  
+			 }else {
+			 
+			 message="userLogin";
+			 
+			 } System.out.println(message);
+			 
 			/*
 			 * //记录用户登录信息 Map<String, Object> attibutes =
 			 * ActionContext.getContext().getSession();
@@ -147,7 +148,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 			 */
 
 		}
-		
+
 		return message;
 
 	}

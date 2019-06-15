@@ -177,5 +177,29 @@ public class RegisterAction extends ActionSupport implements
 		// return "success";
 
 	}
+	
+	public String adminRegister() throws Exception {
+
+		DB mysql = new DB();
+
+		String mess = mysql.insertAdmin(request, this.getUserName(),
+
+				this.getPassword(), this.getSex(), this.getUserPhone(), this.getUserPress());
+
+		if (mess.equals("ok")) {
+
+			message = "admin_success";
+
+		} else if (mess.equals("one")) {
+
+			message = INPUT;
+
+		}
+
+		return message;
+
+		// return "success";
+
+	}
 
 }

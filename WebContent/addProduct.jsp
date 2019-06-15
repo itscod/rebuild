@@ -42,7 +42,7 @@
 	  <div class="layui-form-item layui-form-text">
 	    <label class="layui-form-label">单价</label>
 	    <div class="layui-input-inline">
-	      <input class="layui-input" value="" name="price" placeholder="此项为必填"/>
+	      <input class="layui-input" value="" name="price" lay-verify="price" placeholder="此项为必填"/>
 	    </div>
 	  </div>
 	  
@@ -62,13 +62,29 @@
 	</form>
  
           
-<script src="layui/js/layui.js" charset="utf-8"></script>
+<script src="layui/layui.js" charset="utf-8"></script>
 <script>
-    layui.use('form', function(){
-        var form = layui.form;
+	layui.use('form', function(){
+	    var form = layui.form;	
+        //渲染select事件
         form.render('select','kind');
-        //各种基于事件的操作，下面会有进一步介绍
-        //form.render('组件名','lay-filter名')
+        
+        
+    });
+</script>
+<script>
+	layui.use('form', function(){
+	    var form = layui.form;
+        
+	    form.verify({
+	  		  //单价校验
+	  		  price:[
+	  		    /^[0-9]*[1-9][0-9]*$/
+	  		    ,'单价必须为正整数'
+	  		  ] 
+	  	}; 
+        
+        
     });
 </script>
 </body>
