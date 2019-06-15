@@ -13,7 +13,7 @@
 	  <meta name="apple-mobile-web-app-capable" content="yes">
 	  <meta name="format-detection" content="telephone=no">
 	  
-	  <link href="css/layui.css" rel="stylesheet" media="all">
+	  <link href="layui/css/layui.css" rel="stylesheet" media="all">
 	</head>
 	<body class="layui-layout-body">
 	<div class="layui-layout layui-layout-admin">
@@ -80,8 +80,7 @@
 		<p style="text-align:center">版权所有 © 2019 F-R-U-I-T 保留所有权利 |粤ICP备14101118号-1</p>
 	  </div>
 	</div>
-	<script src="js/layui.all.js" charset="utf-8"></script>
-	<script src="js/layui-tab.js" charset="utf-8"></script>
+	<script src="layui/js/layui.all.js" charset="utf-8"></script>
 	<script>
 	//JavaScript代码区域
 	layui.use('element', function(){

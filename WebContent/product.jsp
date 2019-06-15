@@ -8,7 +8,7 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="stylesheet" href="css/layui.css"  media="all">
+  <link rel="stylesheet" href="layui/css/layui.css"  media="all">
 </head>
 <body>      
     <div class="layui-form layui-border-box layui-table-view" style=" " lay-filter="LAY-table-1" lay-id="test">
@@ -120,8 +120,7 @@
 	
 	</div>
 
-	<script src="js/layui.all.js" charset="utf-8"></script>
-	<script src="js/laypage.js" charset="utf-8"></script>
+	<script src="layui/js/layui.js" charset="utf-8"></script>
 	
 	<script>
 	layui.use('table', function(){

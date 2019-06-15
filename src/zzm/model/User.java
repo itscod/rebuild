@@ -1,6 +1,6 @@
 package zzm.model;
 
-public class user {
+public class User {
 	public String userID;
 	public String userName;
 	public String password;

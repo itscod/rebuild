@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.struts2.interceptor.ServletRequestAware;
 
 import zzm.model.UserName;
-import zzm.model.user;
+import zzm.model.User;
 
 
 public class DB implements ServletRequestAware {
@@ -152,7 +152,7 @@ public class DB implements ServletRequestAware {
 
 			while (rs.next()) {
 
-				user mess = new user();
+				User mess = new User();
 				
 				mess.setUserID(rs.getString("userID"));
 				
@@ -251,6 +251,8 @@ public class DB implements ServletRequestAware {
 				session.setAttribute("userName", listName);
 
 			}
+			
+			
 
 			return "ok";
 
@@ -305,7 +307,7 @@ public class DB implements ServletRequestAware {
 			} else {
 
 				String sql = "insert into userinfo(userName,password,sex,userPhone,userPress,role)"+
-							" values('"+userName+"','"+password+"','"+sex+"','"+userPhone+"','"+userPress+"','用户')";
+							" values('"+userName+"','"+password+"','"+sex+"','"+userPhone+"','"+userPress+"','0')";
 
 				st=getStatement();
 

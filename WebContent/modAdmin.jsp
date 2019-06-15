@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>F-R-U-I-T BG</title>
-<link rel="stylesheet" href="css/layui.css"  media="all">
+<link rel="stylesheet" href="layui/css/layui.css"  media="all">
 </head>
 <body>
 
@@ -55,7 +55,7 @@
 	</form>
  
           
-<script src="js/layui.all.js" charset="utf-8"></script>
+<script src="layui/js/layui.js" charset="utf-8"></script>
 <script>
 	layui.use('form',function(){
 	        var form = layui.form

@@ -1,41 +1,98 @@
 package dao;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import javax.servlet.http.HttpServletRequest;
 
 public class Dao {
-	Connection con = null;
-	Statement stat = null;
-	ResultSet rs = null;
 	
+	static String driverName = "com.mysql.jdbc.Driver";
+
+	static String url = "jdbc:mysql://localhost:3306/fruit_sale";
+
+	static String username = "root";
+
+	static String password = "1708030255";
+
+	static Connection conn = null;
+
+	public static Connection getConn(){
+		   try{
+			   Class.forName(getDriverName());
+			   conn = DriverManager.getConnection(url,username,password);
+		   }catch(Exception e){
+			   e.printStackTrace();
+		   }
+		   return conn;
+	   }
+	   
+	   
+	   
+	   public static void  closeConn(Connection conn){
+		   try{
+			   if(conn!=null || !conn.isClosed()){
+				   conn.close();
+			   }
+		   }catch(Exception e){
+			   e.printStackTrace();
+		   }
+	   }
+
 	public Dao() {
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/fruit_sale","root","1708030255");
-			stat = con.createStatement();
-		} catch (Exception e) {
-			// TODO: handle exception
-			con = null;
-		}
+
 	}
+
+
+
+	public static String getUrl() {
+		return url;
+	}
+
+
+
+	public static void setUrl(String url) {
+		Dao.url = url;
+	}
+
+
+
+	public String getUsername() {
+		return username;
+	}
+
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+
+	public static String getDriverName() {
+		return driverName;
+	}
+
+
+
+	public static void setDriverName(String driverName) {
+		Dao.driverName = driverName;
+	}
+
 	
-	public ResultSet executeQuery(String sql) {
-		try {
-			rs = stat.executeQuery(sql);
-		} catch (Exception e) {
-			// TODO: handle exception
-			rs = null;
-		}
-		
-		return rs;
-	}
-	
-	public int executeUpdate(String sql) {
-		try {
-				stat.executeUpdate(sql);
-				return 0;
-		} catch (Exception e) {
-		// TODO: handle exception
-		}
-		return -1;
-	}
+
 }

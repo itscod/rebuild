@@ -128,9 +128,9 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 		String add=mysql.addList(request,this.getUserName());
 
 		if(add.equals("ok")){
-
-			if(role!=null&&role.equals("管理员")){
-
+			
+			if(role!=null || role.equals("0")){
+					
 				message="adminLogin";
 				
 			}else {
@@ -138,7 +138,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware {
 				message="userLogin";
 				
 			}
-			
+			System.out.println(message);
 			/*
 			 * //记录用户登录信息 Map<String, Object> attibutes =
 			 * ActionContext.getContext().getSession();
