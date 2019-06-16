@@ -9,43 +9,43 @@
 		        <!--Configuration for the default packet.-->
 
 		<package name="default"  extends="struts-default">
+			
+			<!-- 登录 -->
+			<action name="loginAction" class="zzm.action.LoginAction" method="login">
 
-			<action name="loginAction" class="zzm.action.LoginAction">
-
-				<result name="userLogin">/boot.jsp</result>
+				<result name="userlogin">/boot.jsp</result>
 				
-				<result name="adminLogin">/backstageMS.jsp</result>
+				<result name="adminlogin">/backstageMS.jsp</result>
 
-				<result name="input">/login.jsp</result>
-
-				<result name="error">/login.jsp</result>
+				<result name="loginerror">/login.jsp</result>
 
 			</action>
 			
-			<action name="registerAction" class="zzm.action.RegisterAction">
+			<!-- 用户注册 -->
+			<action name="registerAction" class="zzm.action.RegisterAction" method="addUser">
 
-				<result name="register_success">/login.jsp</result>
-
-				<result name="input">/register.jsp</result>
+				<result name="add">/login.jsp</result>
 
 				<result name="error">/register.jsp</result>
 
 			</action>
 			
+			<!-- 管理员查数据，增加，修改，删除 -->
+			<action name="adminRegister" class="zzm.action.AdminAction" >
+
+				<result name="add">/admin.jsp</result>
+
+				<result name="error">/addAdmin.jsp</result>
+
+			</action>
+			
+			<!-- 注销 -->
 			<action name="logout" class="zzm.action.LogoutAction">
 
 				<result name="success">/login.jsp</result>
 
 			</action>
-			<action name="adminRegister" class="zzm.action.RegisterAction" method="adminRegister">
-
-				<result name="admin_success">/admin.jsp</result>
-
-				<result name="input">/addAdmin.jsp</result>
-
-				<result name="error">/addAdmin.jsp</result>
-
-			</action>
+			
 			
 	</package>
 

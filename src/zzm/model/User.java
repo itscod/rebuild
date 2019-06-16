@@ -1,5 +1,7 @@
 package zzm.model;
 
+import java.util.Collection;
+
 public class User {
 	public String userID;
 	public String userName;
@@ -8,12 +10,32 @@ public class User {
 	public String userPhone;
 	public String userPress;
 	public String role;
-	public String getUserID() {
-		return userID;
+	
+	public User() {
+		
 	}
-	public void setUserID(String userID) {
+	
+	public User(String userID,String userName,String password,String sex,String userPhone,String userPress,String role) {
+		super();
 		this.userID = userID;
+		this.userName = userName;
+		this.password = password;
+		this.sex = sex;
+		this.userPhone = userPhone;
+		this.role = role;
 	}
+	
+	public void userName(String userName,String password) {
+		this.userName = userName;
+		this.password = password;
+	}
+	
+	
+
+	public void setUserID(String string) {
+		this.userID = string;
+	}
+
 	public String getUserName() {
 		return userName;
 	}
@@ -38,12 +60,9 @@ public class User {
 	public void setUserPress(String userPress) {
 		this.userPress = userPress;
 	}
-	public String getRole() {
-		return role;
-	}
-	public void setRole(String role) {
-		this.role = role;
-	}
+	
+	
+
 	public void setPassword(String string) {
 		// TODO Auto-generated method stub
 		
@@ -51,4 +70,17 @@ public class User {
 	public String getPassword() {
 		return password;
 	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public String getUserID() {
+		return userID;
+	}
+
 }

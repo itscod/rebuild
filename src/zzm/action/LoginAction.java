@@ -1,156 +1,118 @@
 
 package zzm.action;
 
-import java.sql.ResultSet;
-import java.util.ArrayList;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.struts2.interceptor.ServletRequestAware;
-
 import com.opensymphony.xwork2.ActionSupport;
 
-import zzm.dao.DB;
+import zzm.dao.UserDaoImpl;
+import zzm.model.User;
 
-public class LoginAction extends ActionSupport implements ServletRequestAware {
+public class LoginAction extends ActionSupport {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2869637657543843744L;
 
+	private User user;
+	
 	private String userName;
-
+	
 	private String password;
-
-	private ResultSet rs = null;
-
-	private String message = ERROR;
-
-	private HttpServletRequest request;
-
+	
 	public String getUserName() {
-
 		return userName;
-
 	}
-
 	public void setUserName(String userName) {
-
 		this.userName = userName;
-
 	}
-
 	public String getPassword() {
-
 		return password;
-
 	}
-
 	public void setPassword(String password) {
-
 		this.password = password;
-
 	}
+	/**
 
-	@Override
+	 * 根据用户名查找一条数据
 
-	public void setServletRequest(HttpServletRequest hsr) {
+	 * @return
 
-		// TODO Auto-generated method stub
+	 * @throws Exception
 
-		request = hsr;
+	 */
 
-	}
-
-	public void validate() {
-
-		if (this.getUserName() == null || this.getUserName().length() == 0) {
-
-			addFieldError("username", "请输入登录名字！");
-
-		} else {
-
-			try {
-
-				DB mysql = new DB();
-
-				rs = mysql.selectMess(request, this.getUserName());
-
-				if (!rs.next()) {
-
-					addFieldError("username", "此用户尚未注册！");
-
-				}
-
-			} catch (Exception e) {
-
-				e.printStackTrace();
-
-			}
-
-		}
-
-		if (this.getPassword() == null || this.getPassword().length() == 0) {
-
-			addFieldError("password", "请输入登录密码！");
-
-		} else {
-
-			try {
-
-				DB mysql = new DB();
-
-				rs = mysql.selectMess(request, this.getUserName());
-
-				if (rs.next()) {
-
-					rs = mysql.selectLogin(request, this.getUserName(), this.getPassword());
-
-				}
-
-				if (!rs.next()) {
-
-					addFieldError("password", "登录密码错误！");
-
-				}
-
-			} catch (Exception e) {
-
-				e.printStackTrace();
-
-			}
-
-		}
-
-	}
-
-	public String execute() throws Exception {
-
-		DB mysql = new DB();
+	public String findOne() throws Exception{
 		
-		String role = (String) request.getSession().getAttribute("role");
+		UserDaoImpl userdao = new UserDaoImpl();
 
-		String add = mysql.addList(request, this.getUserName());
-		//判断是否为管理员
-		if (add.equals("ok")) {
+		this.setUser(userdao.findOne(this.getUserName()));
 
-			 if(role.equals("0")){
-			 
-			 message="adminLogin";
-			  
-			 }else {
-			 
-			 message="userLogin";
-			 
-			 } System.out.println(message);
-			 
-			/*
-			 * //记录用户登录信息 Map<String, Object> attibutes =
-			 * ActionContext.getContext().getSession();
-			 * 
-			 * attibutes.put("userName", userName); attibutes.put("password", password);
-			 */
+		if(this.getUser()!=null){
+
+			return "findOne";
+
+		}else{
+
+			return "error";
 
 		}
 
-		return message;
+	}
+	/**
+
+	 * 登录验证
+
+	 * @return
+
+	 * @throws Exception
+
+	 */
+
+	
+	public String login() throws Exception{
+		
+		UserDaoImpl userdao = new UserDaoImpl();
+		
+		this.setUser(userdao.login(this.getUserName(), this.getPassword()));
+		
+		if(user.getUserName() != null){
+
+			
+			  if(user.getRole().equals("0")) {
+			  
+			  return "userlogin";
+			  
+			  }else {
+			  
+			  return "adminlogin";
+			  
+			  }
+			 
+
+		}else{
+
+			return "loginerror";
+
+		}
+
+		
 
 	}
+		public User getUser() {
+			return user;
+		}
+		public void setUser(User user) {
+			this.user = user;
+		}
+		
+
+
+
+
+
+
+
+
+	
 
 }

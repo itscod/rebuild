@@ -1,22 +1,23 @@
 package zzm.model;
 
-public class Product {
+public class Fruits {
 	private int fruitID;
 	private String fruitName;
 	private String kind;
 	private String origin;
-	private String price;
+	private int price;
 	private String images;
 	private String introduce;
 	private String stock;
 	
-	public Product() {
+	public Fruits() {
 		
 	}
 	
-	public Product(String fruitName, String kind, String origin, String price, String images,
+	public Fruits(int fruitID,String fruitName, String kind, String origin, int price, String images,
 			String introduce, String stock) {
 		super();
+		this.fruitID = fruitID;
 		this.fruitName = fruitName;
 		this.kind = kind;
 		this.origin = origin;
@@ -58,12 +59,12 @@ public class Product {
 		this.origin = origin;
 	}
 
-	public String getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
-		this.price = price;
+	public void setPrice(int i) {
+		this.price = i;
 	}
 
 	public String getImages() {
