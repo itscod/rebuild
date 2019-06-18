@@ -88,22 +88,51 @@ layui.use('table', function(){
 
           table.reload('fruitTable',{page:{curr:1}}); //重载表格,第一个参数是表格id
           
-   	});
-    } else if(obj.event === 'edit'){
-      layer.prompt({
-        
-      }, function(value, index){
-        obj.update({
-          
-        });
-        layer.close(index);
-      });
-      
-    }
-    
-    
- 	
- 	});
+   	   });
+      } else if(obj.event === 'edit'){
+    	  layer.open({
+    		  title: '编辑信息',
+    		  type: 2,
+    		  area: ['600px','400px'],
+    		  fixed: false, //不固定
+    		  maxmin: true,
+    		  content: 'modFruit.jsp'
+    	  });
+    	  /**
+    	   * 点击详情 弹窗 账户信息
+    	   */
+    	  $('#ljTable tbody').on('click','.detailsClick',function(){
+    	      var _this = $(this),
+    	          data =_this.parent().siblings(),
+    	          arr = [];
+    	      for(var i = 1; i< data.length; i++){
+    	          // console.log($(data[i]).text());
+    	          arr.push($(data[i]).text());//拿到点击按钮的当前那条信息的内容 放到一个数组里
+    	      }
+    	      // console.log(arr);
+    	      layer.open({
+    	          type: 2,
+    	          skin: 'CLYM-style',
+    	          area: ['600px','400px'],
+    	          title: '编辑信息',
+    	          content: 'modFruit.jsp',
+    	          success: function(layero, index){
+    	              var body = layer.getChildFrame('body',index);//建立父子联系
+    	              var iframeWin = window[layero.find('iframe')[0]['name']];
+    	              // console.log(arr); //得到iframe页的body内容
+    	              // console.log(body.find('input'));
+    	              var inputList = body.find('input');
+    	              for(var j = 0; j< inputList.length; j++){
+    	                  $(inputList[j]).val(arr[j]);
+    	              }
+    	          }
+    	      });
+    	  });
+
+      }
+  });
+  
+  
 });
 </script>
 

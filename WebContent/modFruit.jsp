@@ -12,7 +12,7 @@
 </head>
 <body>
 
-	<form class="layui-form" action="fruit_edit">
+	<form class="layui-form" action="fruit_edit.action">
   
 	  <div class="layui-form-item ">
 	    <label class="layui-form-label">水果名</label>
@@ -55,7 +55,7 @@
 	  
 	  <div class="layui-form-item">
 	    <div class="layui-input-block">
-	      <button class="layui-btn" lay-filter="demo1" lay-submit="">提交修改</button>
+	      <button class="layui-btn" lay-filter="demo1" id="submit" lay-submit="">提交修改</button>
 	      <button class="layui-btn layui-btn-primary" type="reset">重置</button>
 	    </div>
 	  </div>
@@ -69,6 +69,14 @@
         form.render('select','kind');
         //各种基于事件的操作，下面会有进一步介绍
         //form.render('组件名','lay-filter名')
+    });
+    
+    //传值回页面并且关闭
+    var index = parent.layer.getFrameIndex(window.name);
+    
+    $('#submit').on('click', function(){
+        parent.layer.msg('修改完成，请返回商品信息表！', {shade: 0.4});
+        parent.layer.close(index);
     });
 </script>
 </body>
