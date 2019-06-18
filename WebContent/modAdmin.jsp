@@ -9,19 +9,19 @@
 </head>
 <body>
 
-	<form class="layui-form" action="adminAction">
+	<form class="layui-form" action="admin_findAll">
   
 	  <div class="layui-form-item layui-form-text">
 	    <label class="layui-form-label">管理员</label>
 	    <div class="layui-input-inline">
-	      <input class="layui-input" value="" name="userName" placeholder="请输入修改的昵称/真实姓名"/>
+	      <input class="layui-input" value="${user.userName }" name="userName" readonly/>
 	    </div>
 	  </div>
 	  
 	  <div class="layui-form-item layui-form-text">
 	    <label class="layui-form-label">密码</label>
 	    <div class="layui-input-inline">
-	      <input class="layui-input" value="" type="password" name="password" placeholder="请输入修改的密码"/>
+	      <input class="layui-input" value="${user.password }" type="password" name="password"/>
 	    </div>
 	  </div>
 	  
@@ -43,14 +43,14 @@
 	  <div class="layui-form-item layui-form-text">
 	    <label class="layui-form-label">电话号码</label>
 	    <div class="layui-input-inline">
-	      <input class="layui-input" value="" name="userPhone" placeholder="请输入修改的联系电话"/>
+	      <input class="layui-input" value="${user.userPhone }" name="userPhone"/>
 	    </div>
 	  </div>
 	  
 	  <div class="layui-form-item layui-form-text">
 	    <label class="layui-form-label">家庭地址</label>
 	    <div class="layui-input-inline">
-	      <input class="layui-input" value="" name="userPress" placeholder="请输入修改的联系地址"/>
+	      <input class="layui-input" value="${user.userPress }" name="userPress"/>
 	    </div>
 	  </div>
 	  

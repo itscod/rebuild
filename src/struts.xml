@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE struts PUBLIC
-        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
-        "http://struts.apache.org/dtds/struts-2.5.dtd">
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
 
 		        <!--Configuration for the default packet.-->
 
-		<package name="default"  extends="struts-default">
+		<package name="default" namespace="/"  extends="struts-default,json-default">
 			
 			<!-- 登录 -->
 			<action name="loginAction" class="zzm.action.LoginAction" method="login">
 
-				<result name="userlogin">/boot.jsp</result>
+				<result name="userlogin" type= "redirectAction">Iteration</result>
 				
 				<result name="adminlogin">/backstageMS.jsp</result>
 
 				<result name="loginerror">/login.jsp</result>
+
+			</action>
+			
+			<action name="Iteration" class="cn.Iteration">
+
+				<result>/boot.jsp</result>
 
 			</action>
 			
@@ -30,15 +36,6 @@
 
 			</action>
 			
-			<!-- 管理员查数据，增加，修改，删除 -->
-			<action name="adminRegister" class="zzm.action.AdminAction" >
-
-				<result name="add">/admin.jsp</result>
-
-				<result name="error">/addAdmin.jsp</result>
-
-			</action>
-			
 			<!-- 注销 -->
 			<action name="logout" class="zzm.action.LogoutAction">
 
@@ -46,6 +43,66 @@
 
 			</action>
 			
+			<!-- 管理员表数据的查看，增加，修改，删除 -->
+			<action name="admin_*" class="zzm.action.AdminAction" method="{1}">
+
+				<result name="add">/addAdmin.jsp</result>
+				
+				<result name="delete" type="redirectAction">admin_findAll</result>
+				
+				<result name="edit" type="redirectAction">admin_findAll</result>
+				
+				<result name="value">/modAdmin.jsp</result>
+				
+				<result name="admin" type="json">
+
+					<param name="root">jsonObject</param>
+				
+				</result>
+
+				<result name="error">/error.jsp</result>
+
+			</action>
+			
+			
+			<!-- 商品表数据的查看，增加，修改，删除 -->
+			<action name="fruit_*" class="zzm.action.FruitAction" method="{1}">
+
+				<result name="add">/addFruit.jsp</result>
+				
+				<result name="delete" type="redirectAction">fruit_findAll</result>
+				
+				<result name="edit" type="redirectAction">fruit_findAll</result>
+				
+				<result name="value">/modFruit.jsp</result>
+				
+				<result name="fruit" type="json">
+
+					<param name="root">jsonObject</param>
+				
+				</result>
+
+				<result name="error">/error.jsp</result>
+
+			</action>
+			
+			
+			<!-- 商品库存表数据的查看，修改 -->
+			<action name="stock_*" class="zzm.action.StockAction" method="{1}">
+
+				<result name="edit" type="redirectAction">stock_stock</result>
+				
+				<result name="value">/modStock.jsp</result>
+				
+				<result name="stock" type="json">
+
+					<param name="root">jsonObject</param>
+					
+				</result>
+
+				<result name="error">/error.jsp</result>
+
+			</action>
 			
 	</package>
 

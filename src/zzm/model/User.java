@@ -1,7 +1,5 @@
 package zzm.model;
 
-import java.util.Collection;
-
 public class User {
 	public String userID;
 	public String userName;
@@ -61,14 +59,12 @@ public class User {
 		this.userPress = userPress;
 	}
 	
-	
-
-	public void setPassword(String string) {
-		// TODO Auto-generated method stub
-		
-	}
 	public String getPassword() {
 		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getRole() {

@@ -1,35 +1,24 @@
 
 package zzm.action;
 
+import java.util.Map;  
+import com.opensymphony.xwork2.ActionContext; 
 import com.opensymphony.xwork2.ActionSupport;
 
-import zzm.dao.UserDaoImpl;
+import zzm.dao.UserDao;
 import zzm.model.User;
 
 public class LoginAction extends ActionSupport {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 2869637657543843744L;
 
 	private User user;
 	
-	private String userName;
-	
-	private String password;
-	
-	public String getUserName() {
-		return userName;
+	public User getUser() {
+		return user;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	/**
 
@@ -43,9 +32,9 @@ public class LoginAction extends ActionSupport {
 
 	public String findOne() throws Exception{
 		
-		UserDaoImpl userdao = new UserDaoImpl();
+		UserDao userdao = new UserDao();
 
-		this.setUser(userdao.findOne(this.getUserName()));
+		this.setUser(userdao.findOne(user.getUserName()));
 
 		if(this.getUser()!=null){
 
@@ -71,13 +60,18 @@ public class LoginAction extends ActionSupport {
 	
 	public String login() throws Exception{
 		
-		UserDaoImpl userdao = new UserDaoImpl();
+		UserDao userdao = new UserDao();
 		
-		this.setUser(userdao.login(this.getUserName(), this.getPassword()));
+		this.setUser(userdao.login(user.getUserName(), user.getPassword()));
 		
 		if(user.getUserName() != null){
-
 			
+			  //记录用户登录信息 
+			  Map<String, Object> attibutes = ActionContext.getContext().getSession();
+			
+              attibutes.put("userName", user.getUserName());
+              
+              //判断登陆的为管理员还是用户
 			  if(user.getRole().equals("0")) {
 			  
 			  return "userlogin";
@@ -95,24 +89,6 @@ public class LoginAction extends ActionSupport {
 
 		}
 
-		
-
 	}
-		public User getUser() {
-			return user;
-		}
-		public void setUser(User user) {
-			this.user = user;
-		}
-		
-
-
-
-
-
-
-
-
 	
-
 }

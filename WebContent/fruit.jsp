@@ -22,7 +22,7 @@
 </script>
  
 <script id="barDemo" type="text/html">
-  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  <a class="layui-btn layui-btn-xs" lay-event="edit" lay-event="edit">编辑</a>
   <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
               
@@ -34,8 +34,9 @@ layui.use('table', function(){
   var table = layui.table;
   
   table.render({
-    elem: '#test'
-    ,url:'/test/table/demo1.json'
+	id: 'fruitTable'
+    ,elem: '#test'
+    ,url:'fruit_findAll.action'
     ,toolbar: '#toolbarDemo'
     ,title: '商品信息表'
     ,cols: [[
@@ -74,22 +75,35 @@ layui.use('table', function(){
     var data = obj.data;
     //console.log(obj)
     if(obj.event === 'del'){
+       //重载本级表格
       layer.confirm('您确定删除吗', function(index){
-        obj.del();
-        layer.close(index);
-      });
+
+      	layer.msg("删除成功");//提示
+
+          obj.del(); //删除行
+
+          layer.close(index);
+          
+          url:'fruit_delete.action'
+
+          table.reload('fruitTable',{page:{curr:1}}); //重载表格,第一个参数是表格id
+          
+   	});
     } else if(obj.event === 'edit'){
       layer.prompt({
-        formType: 2
-        ,value: data.email
+        
       }, function(value, index){
         obj.update({
-          email: value
+          
         });
         layer.close(index);
       });
+      
     }
-  });
+    
+    
+ 	
+ 	});
 });
 </script>
 

@@ -21,7 +21,7 @@
 
 <body>
  <div style="width: 350px; position: relative; left:35%; margin-top:10%;">
-	<form class="layui-form" action="registerAction" method="post">
+	<form class="layui-form" action="registerAction.action" method="post">
 		<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
 		  <legend>注册</legend>
 		  &nbsp;&nbsp;&nbsp;&nbsp;<br>
@@ -32,14 +32,14 @@
 	  <div class="layui-form-item layui-form-text">
 	    <label class="layui-form-label">用户名</label>
 	    <div class="layui-input-inline">
-	      <input class="layui-input" name="userName" lay-verify="userName" placeholder="请输入昵称/真实姓名"/>
+	      <input class="layui-input" name="user.userName" lay-verify="userName" placeholder="请输入昵称/真实姓名"/>
 	    </div>
 	  </div>
 	  
 	  <div class="layui-form-item layui-form-text">
 	    <label class="layui-form-label">密码</label>
 	    <div class="layui-input-inline">
-	      <input class="layui-input" name="password" type="password" lay-verify="password" id="password" placeholder="请输入密码"/>
+	      <input class="layui-input" name="user.password" type="password" lay-verify="password" id="password" placeholder="请输入密码"/>
 	    </div>
 	  </div>
 	  
@@ -53,22 +53,22 @@
 	  <div class="layui-form-item">
 	    <label class="layui-form-label">单选框</label>
 	    <div class="layui-input-block">
-	      <input type="radio" name="sex" value="男" title="男">
-	      <input type="radio" name="sex" value="女" title="女" checked>
+	      <input type="radio" name="user.sex" value="男" title="男">
+	      <input type="radio" name="user.sex" value="女" title="女" checked>
 	    </div>
 	  </div>
 				            
 	  <div class="layui-form-item layui-form-text">
 	    <label class="layui-form-label">联系电话</label>
 	    <div class="layui-input-inline">
-	      <input class="layui-input" name="userPhone" lay-verify="userPhone" placeholder="请输入联系电话"/>
+	      <input class="layui-input" name="user.userPhone" lay-verify="userPhone" placeholder="请输入联系电话"/>
 	    </div>
 	  </div>
 	  
 	  <div class="layui-form-item layui-form-text">
 	    <label class="layui-form-label">家庭住址</label>
 	    <div class="layui-input-inline">
-	      <input class="layui-input" name="userPress" lay-verify="userPress" placeholder="请输入联系地址"/>
+	      <input class="layui-input" name="user.userPress" lay-verify="userPress" placeholder="请输入联系地址"/>
 	    </div>
 	  </div>
 	  
@@ -110,9 +110,9 @@
 		    ,'密码必须5到12位，且不能出现空格'
 		  ] 
 		  
-		  //确认密码校验
+		//确认密码校验
 		  ,passw_confirm:function(value,item){
-			  if(!$('#password').val() == value){
+			  if($('#password').val() != value){
 				  return '两次输入密码不一致';
 			  }
 		  }

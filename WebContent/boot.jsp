@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -8,13 +8,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 <link href="css/reset.css" rel="stylesheet" type="text/css">
 <link href="css/index.css" rel="stylesheet" type="text/css">
 <link href="css/slider.css" rel="stylesheet" type="text/css" media="all" />
-<script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/zySearch.js"></script>
 <script src="js/jquery.movebg.js"></script>
 <script type="text/javascript" src="js/move-top.js"></script>
@@ -25,6 +25,7 @@
 	src="https://cdn.bootcss.com/bootstrap-hover-dropdown/2.2.1/bootstrap-hover-dropdown.js"></script>
 <script type="text/javascript">
 	$(function() {
+	
 
 		$('#slider').nivoSlider();
 		$("#zySearch").zySearch({
@@ -59,6 +60,12 @@
 		li.style.display = 'none' ;
 	}
 
+    function onguochan() {
+        window.location.hash = "#guochan";
+       }
+    function onjinkou() {
+       	window.location.hash = "#jinkou";
+    }
 </script>
 </head>
 <body style="background-color:#f3f2f0">
@@ -72,7 +79,8 @@
 			<div class="col-md-7 column" style="text-align:center;font-size:13px">
 				
 				你好！
-				${userName}				&nbsp;|&nbsp;
+				<s:property value="#session.userName" />
+				&nbsp;|&nbsp;
 				<a href="logout.action">注销</a>
 			</div>
 		</div>
@@ -124,19 +132,19 @@
 
 
 
-	<div class="container-fluid">
+	<div class="container-fluid" data-spy="scroll" data-target="#myScrollspy">
 		<div class="row clearfix">
-			<div class="col-md-12 column">
+			<div class="col-md-12 column" id="myScrollspy">
 				<div class="wraper">
 					<div class="nav">
 						<ul>
 							<li class="nav-item"><a href="http://localhost:8080/fruit/boot.html">全部商品</a></li>
 							<li class="nav-item cur"><a href="http://sc.chinaz.com/"
 								target="_blank">首页</a></li>
-							<li class="nav-item"><a href="http://sc.chinaz.com/"
-								target="_blank">进口水果</a></li>
-							<li class="nav-item"><a href="http://sc.chinaz.com/"
-								target="_blank">国产水果</a></li>
+							<li class="nav-item" onclick="onjinkou()"><a
+								target="_blank" style="cursor:pointer;">进口水果</a></li>
+							<li class="nav-item" onclick="onguochan()"><a
+								target="_blank" style="cursor:pointer;">国产水果</a></li>
 							<li class="nav-item"><a href="http://sc.chinaz.com/"
 								target="_blank">？</a></li>
 						</ul>
@@ -146,20 +154,144 @@
 					</div>
 				</div>
 			</div>
+		
+			<div class="col-md-12 column" style="height:520px">
+				<div class="col-md-12 column">
+					<div class="header_bottom_right">
+						<!------ Slider ------------>
+						<div class="slider">
+							<div class="slider-wrapper theme-default">
+								<div id="slider" class="nivoSlider">
+									<img src="images/a.jpg" data-thumb="images/1.jpg" alt="" /> <img
+										src="images/b.jpg" data-thumb="images/2.jpg" alt="" /> <img
+										src="images/c.jpg" data-thumb="images/3.jpg" alt="" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
+	</div>
+	<div class="container" style="magin-top:40px;">
+		<div class="row clearfix">
+			<div class="container" style="background-color:#ffffff">
+				<div class="row clearfix" style="background-color:#f3f2f0">
+					<div class="col-md-12 column"
+						style="font-size:20px;color:brown;font-weight:bold;" id="jinkou">
+						<br />【进口水果】 纵享异国口感，回味无穷<br />
+						<br />
+						<hr style="height:21px;border-top:2px solid green;" />
+					</div>
+				</div>
+				<div class="row clearfix" style="background-color:#f3f2f0">
+				<s:iterator value="#session.list1">
+					<div class="col-md-3">
+						<div class="thumbnail">
+							<img alt="200x200" src="images/<s:property value="images"/>" />
+							<div class="caption" style="text-align:center">
+								<h3 style="text-align:center"><s:property value="fruitsname"/></h3>
+								<p>
+									<span class="price0">热卖价 :</span> <span class="price1"
+										style="color:green;font-size:17px;font-weight:bold;">￥<s:property value="price"/></span>
+								</p>
+									<button class="btn btn-success" data-toggle="modal" data-target="#<s:property value="fruitID"/>">加入购物车</button>
+									<div class="modal fade" id="<s:property value="fruitID"/>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal" 
+															aria-hidden="true">×
+													</button>
+													<h4 class="modal-title" id="myModalLabel">
+														<s:property value="fruitsname"/>
+													</h4>
+												</div>
+												<div class="modal-body">
+													<img alt="400x400" src="images/<s:property value="images"/>" width="400px"/>
+													<p><s:property value="introduce"/></p>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-default" 
+															data-dismiss="modal">关闭
+													</button>
+													<button type="button" class="btn btn-primary">
+														加入购物车
+													</button>
+												</div>
+											</div><!-- /.modal-content -->
+										</div><!-- /.modal-dialog -->
+									</div><!-- /.modal -->
+							</div>
+						</div>
+					</div>
+				</s:iterator>
+				</div>
+				<div class="row clearfix" style="background-color:#f3f2f0">
+					<div class="col-md-12 column"
+						style="font-size:20px;color:brown;font-weight:bold;" id="guochan">
+						<br />【国产水果】 应时而采，新鲜特供<br />
+						<br />
+						<hr style="height:21px;border-top:2px solid green;" />
+					</div>
+				</div>
+				<div class="row clearfix" style="background-color:#f3f2f0">
+					<s:iterator value="#session.list2">
+						<div class="col-md-3">
+							<div class="thumbnail">
+								<img alt="200x200" src="images/<s:property value="images"/>" />
+								<div class="caption" style="text-align:center">
+									<h3 style="text-align:center"><s:property value="fruitsname"/></h3>
+									<p>
+										<span class="price0">热卖价 :</span> <span class="price1"
+											style="color:green;font-size:17px;font-weight:bold;">￥<s:property value="price"/></span>
+									</p>
+									<a href="#jinkou">
+									<button class="btn btn-success" data-toggle="modal" data-target="#<s:property value="fruitID"/>">加入购物车</button>
+									</a>
+									<div class="modal fade" id="<s:property value="fruitID"/>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal" 
+															aria-hidden="true">×
+													</button>
+													<h4 class="modal-title" id="myModalLabel">
+														<s:property value="fruitsname"/>
+													</h4>
+												</div>
+												<div class="modal-body">
+													<img alt="400x400" src="images/<s:property value="images"/>" width="400px"/>
+													<p><s:property value="introduce"/></p>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-default" 
+															data-dismiss="modal">关闭
+													</button>
+													<button type="button" class="btn btn-primary">
+														加入购物车
+													</button>
+												</div>
+											</div><!-- /.modal-content -->
+										</div><!-- /.modal-dialog -->
+									</div><!-- /.modal -->
+								</div>
+							</div>
+						</div>
+					</s:iterator>
+				</div>
+			</div>			
 		</div>
-		<div style="height: 2000px;">
-	<iframe src="top.jsp" name="content" id="zhuye" width="100%" height="100%" scrolling="no" frameborder="0">
+	</div>
+	<div class="container-fluid">
+		<div class="row clearfix">
+			<div class="col-md-12 column" style="height:200px">
+				<iframe src="bottom.jsp" name="bottom" id="dibu" width="100%" height="100%" scrolling="no" frameborder="0">		
+				</iframe>
+			</div>
+		</div>
+	</div>
 	
-			
-	</iframe>
-	</div>
-	<div style="text-align:center;background-color:white">
-		<p>友情链接：永隆铺超市</p>
-		<p>F-R-U-I-T是一家高品质网上水果超市,可提供深圳水果同城免费配送,网上水果超市可以给您提供更好的水果网购新体验！</p>
-		<p>版权所有 © 2019 F-R-U-I-T 保留所有权利 |粤ICP备14101118号-1</p>
-		<br/><br>
-	</div>
 	
 </body>
 </html>

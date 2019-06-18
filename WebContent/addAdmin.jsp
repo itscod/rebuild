@@ -12,20 +12,20 @@
 </head>
 <body>
 
-	<form class="layui-form" action="adminRegister" method="post">
+	<form class="layui-form" action="admin_addAdmin.action" method="post">
 	
   
 	  <div class="layui-form-item layui-form-text">
 	    <label class="layui-form-label">管理员</label>
 	    <div class="layui-input-inline">
-	      <input class="layui-input" name="userName" lay-verify="userName" placeholder="请输入昵称/真实姓名"/>
+	      <input class="layui-input" name="user.userName" lay-verify="userName" placeholder="请输入昵称/真实姓名"/>
 	    </div>
 	  </div>
 	  
 	  <div class="layui-form-item layui-form-text">
 	    <label class="layui-form-label">密码</label>
 	    <div class="layui-input-inline">
-	      <input class="layui-input" name="password" type="password" lay-verify="password" id="password" placeholder="请输入密码"/>
+	      <input class="layui-input" name="user.password" type="password" lay-verify="password" id="password" placeholder="请输入密码"/>
 	    </div>
 	  </div>
 	  
@@ -39,36 +39,36 @@
 	  <div class="layui-form-item">
 	    <label class="layui-form-label">单选框</label>
 	    <div class="layui-input-block">
-	      <input type="radio" name="sex" value="男" title="男">
-	      <input type="radio" name="sex" value="女" title="女" checked>
+	      <input type="radio" name="user.sex" value="男" title="男">
+	      <input type="radio" name="user.sex" value="女" title="女" checked>
 	    </div>
 	  </div>
 				            
 	  <div class="layui-form-item layui-form-text">
 	    <label class="layui-form-label">联系电话</label>
 	    <div class="layui-input-inline">
-	      <input class="layui-input" name="userPhone" lay-verify="userPhone" placeholder="请输入联系电话"/>
+	      <input class="layui-input" name="user.userPhone" lay-verify="userPhone" placeholder="请输入联系电话"/>
 	    </div>
 	  </div>
 	  
 	  <div class="layui-form-item layui-form-text">
 	    <label class="layui-form-label">家庭住址</label>
 	    <div class="layui-input-inline">
-	      <input class="layui-input" name="userPress" lay-verify="userPress" placeholder="请输入联系地址"/>
+	      <input class="layui-input" name="user.userPress" lay-verify="userPress" placeholder="请输入联系地址"/>
 	    </div>
 	  </div>
 	  
 	  
 	  <div class="layui-form-item">
 	    <div class="layui-input-block">
-	      <button class="layui-btn" type="submit" lay-submit="" >立即提交</button>
+	      <button class="layui-btn" type="submit" lay-submit="" lay-event="submit">立即提交</button>
 	      <button class="layui-btn layui-btn-primary" type="reset">重置</button>
 	    </div>
 	  </div>
 	</form>
  
  
-<!-- 表单校验 -->
+<!-- -------------------表单校验----------------------- -->
 <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
 <script src="layui/layui.js" charset="utf-8"></script>
 <script type="text/javascript">
@@ -121,6 +121,17 @@
 			  console.log(data.elem); //得到radio原始DOM对象
 			  console.log(data.value); //被点击的radio的value值
 		}); 
+	}); 
+</script>
+<script>
+	//监听按钮
+	form.on('submit', function(obj){
+	    layer.msg("添加成功，请返回管理员信息表");
+	});	
+	//监听radio
+	form.on('radio(filter)', function(data){
+		  console.log(data.elem); //得到radio原始DOM对象
+		  console.log(data.value); //被点击的radio的value值
 	}); 
 </script>
 

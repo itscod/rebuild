@@ -23,7 +23,7 @@
 </script>
  
 <script id="barDemo" type="text/html">
-  <a class="">编辑</a>
+  <a class="layui-btn layui-btn-xs" lay-event="edit" lay-event="edit">编辑</a>
   <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
               
@@ -37,7 +37,7 @@ layui.use('table', function(){
   
   table.render({
     elem: '#test'
-    ,url:'/test/table/demo1.json'
+    ,url:'admin_findAll.action'
     ,toolbar: '#toolbarDemo'
     ,title: '管理员信息表'
     ,cols: [[
@@ -82,11 +82,10 @@ layui.use('table', function(){
       });
     } else if(obj.event === 'edit'){
       layer.prompt({
-        formType: 2
-        ,value: data.email
+        url:'admin_delete.action'
       }, function(value, index){
         obj.update({
-          email: value
+          url:'admin_findAll.action'
         });
         layer.close(index);
       });

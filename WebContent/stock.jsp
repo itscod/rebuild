@@ -22,8 +22,7 @@
 </script>
  
 <script id="barDemo" type="text/html">
-  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+  <a class="layui-btn layui-btn-xs" lay-event="edit" href="stock_findOneStock">编辑</a>
 </script>
               
           
@@ -35,15 +34,14 @@ layui.use('table', function(){
   
   table.render({
     elem: '#test'
-    ,url:'/test/table/demo1.json'
+    ,url:'stock_stock.action'
     ,toolbar: '#toolbarDemo'
     ,title: '商品信息表'
     ,cols: [[
       {type: 'checkbox', fixed: 'left'}
       ,{field:'fruitID', title:'ID', width:80, fixed: 'left', unresize: true, sort: true}
       ,{field:'fruitName', title:'水果', width:100}
-      ,{field:'stock', title:'库存', width:100}
-      ,{field:'replenish', title:'请及时补货', width:100}
+      ,{field:'stock', title:'库存', width:100, sort: true}
       ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
     ]]
     ,page: true

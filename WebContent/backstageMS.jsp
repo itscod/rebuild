@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html>
 <html>
 	 <head>
@@ -25,7 +26,7 @@
 	    </ul>
 	    <ul class="layui-nav layui-layout-right">
 	      <li class="layui-nav-item">
-	        ${userName}
+	        <s:property value="#session.userName" />
 	      </li>
 	      <li class="layui-nav-item"><a href="logout.action">退出</a></li>
 	      <span class="layui-nav-bar" style="left: 76px; top: 55px; width: 0px; opacity: 0;"></span>
@@ -39,16 +40,14 @@
 	        <li class="layui-nav-item layui-nav-itemed">
 	          <a href="javascript:;">商品管理</a>
 	          <dl class="layui-nav-child">
-	            <dd><a data-url="product.jsp" data-id="1" data-title="商品详情" href="#" class="site-demo-active" data-type="tabAdd">商品详情</a></dd>
-	            <dd><a data-url="addProduct.jsp" data-id="2" data-title="添加商品" href="#" class="site-demo-active" data-type="tabAdd">添加商品</a></dd>
-	            <dd><a data-url="modProduct.jsp" data-id="3" data-title="修改信息" href="#" class="site-demo-active" data-type="tabAdd">修改信息</a></dd>
+	            <dd><a data-url="fruit.jsp" data-id="1" data-title="商品详情" href="#" class="site-demo-active" data-type="tabAdd">商品详情</a></dd>
+	            <dd><a data-url="addFruit.jsp" data-id="2" data-title="添加商品" href="#" class="site-demo-active" data-type="tabAdd">添加商品</a></dd>
 	          </dl>
 	        </li>
 	        <li class="layui-nav-item layui-nav-itemed">
 	          <a href="javascript:;">库存管理</a>
 	          <dl class="layui-nav-child">
 	            <dd><a data-url="stock.jsp" data-id="4" data-title="缺货提醒" href="#" class="site-demo-active" data-type="tabAdd"">缺货提醒</a></dd>
-	            <dd><a data-url="modStock.jsp" data-id="5" data-title="修改库存" href="#" class="site-demo-active" data-type="tabAdd">修改库存</a></dd>
 	          </dl>
 	        </li>
 	        <li class="layui-nav-item layui-nav-itemed">
@@ -56,7 +55,6 @@
 	          <dl class="layui-nav-child">
 	          	<dd><a data-url="admin.jsp" data-id="6" data-title="管理员详情" href="#" class="site-demo-active" data-type="tabAdd">管理员详情</a></dd>
 	            <dd><a data-url="addAdmin.jsp" data-id="7" data-title="添加管理员" href="#" class="site-demo-active" data-type="tabAdd">添加管理员</a></dd>
-	            <dd><a data-url="modAdmin.jsp" data-id="8" data-title="修改信息" href="#" class="site-demo-active" data-type="tabAdd">修改信息</a></dd>
 	          </dl>
 	        </li>
 	     </ul>

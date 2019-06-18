@@ -8,14 +8,14 @@ public class Fruits {
 	private int price;
 	private String images;
 	private String introduce;
-	private String stock;
+	private int stock;
 	
 	public Fruits() {
 		
 	}
 	
 	public Fruits(int fruitID,String fruitName, String kind, String origin, int price, String images,
-			String introduce, String stock) {
+			String introduce, int stock) {
 		super();
 		this.fruitID = fruitID;
 		this.fruitName = fruitName;
@@ -83,17 +83,19 @@ public class Fruits {
 		this.introduce = introduce;
 	}
 
-	public String getStock() {
+	
+	
+	public int getStock() {
 		return stock;
 	}
 
-	public void setStock(String stock) {
+	public void setStock(int stock) {
 		this.stock = stock;
-	} 
-	
+	}
+
 	@Override
 	public String toString() {
-		return "Product [fruitName=" + fruitName + ", kind=" + kind+ ", origin=" + origin + ", price=" + price 
+		return "Fruits [fruitName=" + fruitName + ", kind=" + kind+ ", origin=" + origin + ", price=" + price 
 						+ ", images=" + images+ ", introduce=" + introduce+ ", stock=" + stock+ "]";
 	}
 }

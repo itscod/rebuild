@@ -12,12 +12,12 @@
 </head>
 <body>
 
-	<form class="layui-form" action="productAction">
+	<form class="layui-form" action="fruit_edit">
   
 	  <div class="layui-form-item ">
 	    <label class="layui-form-label">水果名</label>
 	    <div class="layui-input-inline">
-	      <input class="layui-input" value="" name="fruitName" placeholder="请输入水果名"/>
+	      <input class="layui-input" value="${fruits.fruitName }" name="fruitName" readonly/>
 	    </div>
 	  </div>
 	  
@@ -35,27 +35,27 @@
 	  <div class="layui-form-item layui-form-text">
 	    <label class="layui-form-label">原产地</label>
 	    <div class="layui-input-inline">
-	      <input class="layui-input" value="" name="origin" placeholder="请输入原产地"/>
+	      <input class="layui-input" value="${fruits.origin }" name="origin"/>
 	    </div>
 	  </div>
 	  
 	  <div class="layui-form-item layui-form-text">
 	    <label class="layui-form-label">单价</label>
 	    <div class="layui-input-inline">
-	      <input class="layui-input" value="" name="price" lay-verify="price" placeholder="此项为必填"/>
+	      <input class="layui-input" value="${fruits.price }" name="price"/>
 	    </div>
 	  </div>
 	  
 	  <div class="layui-form-item layui-form-text">
 	    <label class="layui-form-label">介绍</label>
 	    <div class="layui-input-block" width="200px">
-	      <textarea class="layui-textarea" placeholder="请输入内容" name="introduce" width="200px"></textarea>
+	      <textarea class="layui-textarea" value="${fruits.introduce }" name="introduce" width="200px"></textarea>
 	    </div>
 	  </div>
 	  
 	  <div class="layui-form-item">
 	    <div class="layui-input-block">
-	      <button class="layui-btn" lay-filter="demo1" lay-submit="">立即提交</button>
+	      <button class="layui-btn" lay-filter="demo1" lay-submit="">提交修改</button>
 	      <button class="layui-btn layui-btn-primary" type="reset">重置</button>
 	    </div>
 	  </div>
@@ -64,27 +64,11 @@
           
 <script src="layui/layui.js" charset="utf-8"></script>
 <script>
-	layui.use('form', function(){
-	    var form = layui.form;	
-        //渲染select事件
+    layui.use('form', function(){
+        var form = layui.form;
         form.render('select','kind');
-        
-        
-    });
-</script>
-<script>
-	layui.use('form', function(){
-	    var form = layui.form;
-        
-	    form.verify({
-	  		  //单价校验
-	  		  price:[
-	  		    /^[0-9]*[1-9][0-9]*$/
-	  		    ,'单价必须为正整数'
-	  		  ] 
-	  	}; 
-        
-        
+        //各种基于事件的操作，下面会有进一步介绍
+        //form.render('组件名','lay-filter名')
     });
 </script>
 </body>

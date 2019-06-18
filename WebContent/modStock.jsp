@@ -12,19 +12,19 @@
 </head>
 <body>
 
-	<form class="layui-form" action="adminAction">
+	<form class="layui-form" action="stock_edit">
   
 	  <div class="layui-form-item layui-form-text">
 	    <label class="layui-form-label">缺货的水果</label>
 	    <div class="layui-input-inline">
-	      <input class="layui-input" value="" readonly/>
+	      <input class="layui-input" value="${fruits.fruitName }" readonly/>
 	    </div>
 	  </div>
 	  
 	  <div class="layui-form-item layui-form-text">
 	    <label class="layui-form-label">库存数量</label>
 	    <div class="layui-input-inline">
-	      <input class="layui-input" value="" readonly/>
+	      <input class="layui-input" value="${fruits.stock }" readonly/>
 	    </div>
 	  </div>
 	  
