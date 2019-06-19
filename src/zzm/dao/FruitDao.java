@@ -11,10 +11,10 @@ import zzm.model.Fruits;
 
 public class FruitDao{
 	
-	//通过水果ID找详细信息，用于商品的修改时，可获取到要修改的值
-	public Fruits findFruit(Integer fruitID) {
+	//通过水果名找详细信息，用于商品的修改时，可获取到要修改的值
+	public Fruits findFruit(String fruitName) {
 
-		String sql="select * from fruitinfo where fruitID='"+fruitID+"'";
+		String sql="select * from fruitinfo where fruitName='"+fruitName+"'";
 
 		ResultSet rs=BaseDao.executeQuery(sql);
 		
@@ -159,9 +159,9 @@ public class FruitDao{
 		}
 		
 		//将修改后的值更新到数据库
-		public int update(Fruits fruit,Integer fruitID) {
+		public int update(Fruits fruit,String fruitName) {
 			
-			String sql="update fruitinfo set kind=?,origin=?,price=?,introduce=? where fruitID='"+fruitID+"'";
+			String sql="update fruitinfo set kind=?,origin=?,price=?,introduce=? where fruitName='"+fruitName+"'";
 			
 			int i = 0;
 			
@@ -171,4 +171,5 @@ public class FruitDao{
 			
 			return i;
 		}
+
 }

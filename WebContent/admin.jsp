@@ -43,11 +43,11 @@ layui.use('table', function(){
     ,cols: [[
       {type: 'checkbox', fixed: 'left'}
       ,{field:'userID', title:'ID', width:80, fixed: 'left', unresize: true, sort: true}
-      ,{field:'userName', title:'用户名', width:120}
-      ,{field:'password', title:'密码', width:120}
-      ,{field:'sex', title:'性别', width:80, sort: true}
-      ,{field:'userPhone', title:'联系电话', width:150}
-      ,{field:'userPress', title:'家庭地址'}
+      ,{field:'userName', title:'用户名', width:120,edit:'field'}
+      ,{field:'password', title:'密码', width:120,edit:'field'}
+      ,{field:'sex', title:'性别', width:80, sort: true,edit:'field'}
+      ,{field:'userPhone', title:'联系电话', width:150,edit:'field'}
+      ,{field:'userPress', title:'家庭地址',edit:'field'}
       ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
     ]]
     ,page: true
@@ -76,19 +76,64 @@ layui.use('table', function(){
     var data = obj.data;
     //console.log(obj)
     if(obj.event === 'del'){
-      layer.confirm('您确定删除吗', function(index){
-        obj.del();
-        layer.close(index);
-      });
+    	 //重载本级表格
+        layer.confirm('您确定删除吗', function(index){
+      	  
+            obj.del(); //删除行
+
+            layer.close(index);
+            
+            $.ajax({
+
+                url:"${pageContext.request.contextPath}/admin_delete.action",
+                
+                type: 'post',
+                
+                data: {
+              	  "userID": data.userID
+                },
+            
+                dataType: "json",
+                
+                success: function(data){
+              	  layer.msg("删除成功!");
+                }
+                
+            });
+
+            /* table.reload('fruitTable',{page:{curr:1}}); //重载表格,第一个参数是表格id */
+            
+     	   });
     } else if(obj.event === 'edit'){
-      layer.prompt({
-        url:'admin_delete.action'
-      }, function(value, index){
-        obj.update({
-          url:'admin_findAll.action'
-        });
-        layer.close(index);
-      });
+    	/**
+  	   * 点击编辑 弹窗 管理员信息
+  	   */
+  	   
+  	  layer.open({
+  		  
+  		  type: 2,
+  		  
+  		  title: '编辑管路员信息',
+  		  
+  		  shift:1,
+  		  
+  		  area: ['600px', '450px'],
+  		  
+  		  shadeClose: true,
+  		  
+  		  content: 'modAdmin.jsp',//iframe的url
+  		  
+  		  success: function(layero,index) {
+  			  //获取modAdmin的所有信息
+  			  var body = layui.layui.getChildFrame('body',index);
+  			  //放入数据
+  			  body.find("#userName").val(data.userName);
+  			  body.find("#password").val(data.password);
+  			  body.find("#userPhone").val(data.userPhone);
+  			  body.find("#userPress").val(data.userPress);
+  		  }
+  		 
+  		}); 
     }
   });
 });

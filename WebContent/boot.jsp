@@ -66,6 +66,7 @@
     function onjinkou() {
        	window.location.hash = "#jinkou";
     }
+
 </script>
 </head>
 <body style="background-color:#f3f2f0">
@@ -109,9 +110,9 @@
 								width="29px" height="31px">
 						</div>
 						<ul id="my" style="display:none;">
-							<a href="http://localhost:8080/error/information.jsp" target="content" style="text-decoration:none;"><li class="information">修改信息></li></a>
-							<a href="#" target="content" style="text-decoration:none;"><li class="order">我的订单></li></a>
-							<a href="#" target="content" style="text-decoration:none;"><li class="help">帮助中心></li></a>
+							<a href="http://localhost:8080/error/Personal" target="" style="text-decoration:none;"><li class="information">修改信息></li></a>
+							<a href="http://localhost:8080/error/OrderAction" target="" style="text-decoration:none;"><li class="order">我的订单></li></a>
+
 						</ul>
 					</div>
 				</div>
@@ -121,9 +122,11 @@
 			<div class="col-md-2 column">
 				<div id="nav" style="margin-left:-30px;margin-top:27px">
 					<div class="navsBox">
-						<div class="firstNav">
-							<img src="images/che.jpg">&nbsp;&nbsp;我的购物车
-						</div>
+						<a href="ShoppingCart">
+							<div class="firstNav">
+								<img src="images/che.jpg">&nbsp;&nbsp;我的购物车
+							</div>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -138,7 +141,7 @@
 				<div class="wraper">
 					<div class="nav">
 						<ul>
-							<li class="nav-item"><a href="http://localhost:8080/fruit/boot.html">全部商品</a></li>
+							<li class="nav-item"><a href="http://localhost:8080/error/boot.jsp">全部商品</a></li>
 							<li class="nav-item cur"><a href="http://sc.chinaz.com/"
 								target="_blank">首页</a></li>
 							<li class="nav-item" onclick="onjinkou()"><a
@@ -215,9 +218,11 @@
 													<button type="button" class="btn btn-default" 
 															data-dismiss="modal">关闭
 													</button>
-													<button type="button" class="btn btn-primary">
-														加入购物车
-													</button>
+													<a href="PurchaseAction?id=<s:property value="fruitID"/>">
+														<button type="button" class="btn btn-primary">
+															加入购物车
+														</button>
+													</a>
 												</div>
 											</div><!-- /.modal-content -->
 										</div><!-- /.modal-dialog -->
@@ -268,9 +273,11 @@
 													<button type="button" class="btn btn-default" 
 															data-dismiss="modal">关闭
 													</button>
-													<button type="button" class="btn btn-primary">
-														加入购物车
-													</button>
+													<a href="PurchaseAction?id=<s:property value="fruitID"/>">
+														<button type="button" class="btn btn-primary">
+															加入购物车
+														</button>
+													</a>
 												</div>
 											</div><!-- /.modal-content -->
 										</div><!-- /.modal-dialog -->

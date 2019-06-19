@@ -21,7 +21,7 @@
 
 <body>
  <div style="width: 350px; position: relative; left:35%; margin-top:10%;">
-	<form class="layui-form" action="registerAction.action" method="post">
+	<form class="layui-form" action="registerAction_addUser.action" method="post">
 		<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
 		  <legend>注册</legend>
 		  &nbsp;&nbsp;&nbsp;&nbsp;<br>
@@ -32,7 +32,7 @@
 	  <div class="layui-form-item layui-form-text">
 	    <label class="layui-form-label">用户名</label>
 	    <div class="layui-input-inline">
-	      <input class="layui-input" name="user.userName" lay-verify="userName" placeholder="请输入昵称/真实姓名"/>
+	      <input class="layui-input" name="user.userName" lay-verify="userName" id="userName" placeholder="请输入昵称/真实姓名"/>
 	    </div>
 	  </div>
 	  
@@ -86,6 +86,37 @@
 <!-- 表单校验 -->
 <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
 <script src="layui/layui.js" charset="utf-8"></script>
+
+<!-- 异步验证用户名是否已被注册过 -->
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		$('#userName').blur(function(){
+			var userName = $("#userName").val();
+
+		    $.ajax({
+		        url : "${pageContext.request.contextPath}/registerAction_findOne.action", //后台查询验证的方法
+		        data : {
+		            "userName" : userName
+		        }, //携带的参数
+		        type : "post",
+		        success : function(msg) {
+		            //根据后台返回前台的msg给提示信息加HTML
+		            if ("true" != msg) {
+		                // 账号已经存在
+		                alert("抱歉，" + userName + "已被注册，请更换！");
+		            } else {
+		                
+		                
+		            }
+		        }
+		    });
+		});
+		
+	})
+</script>
+<!-- end -->
+
 <script type="text/javascript">
 	layui.use('form', function(){
 		var form = layui.form;

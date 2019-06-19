@@ -1,7 +1,6 @@
 package zzm.action;
 
-import java.util.Map;
-
+import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -14,10 +13,11 @@ public class LogoutAction extends ActionSupport{
 	 * 
 	 * @Override
 	 */
-	    public String execute() throws Exception { 
-	        Map<String, Object> attibutes = ActionContext.getContext().getSession(); 
-	        attibutes.remove("userName"); 
-	        return SUCCESS; 
+	    public String execute() throws Exception {
+	    	
+	        ActionContext.getContext().getSession().remove("userName"); 
+	        
+	        return Action.SUCCESS; 
 	    } 
 	    
 }

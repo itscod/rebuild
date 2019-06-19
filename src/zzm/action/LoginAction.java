@@ -1,7 +1,6 @@
 
 package zzm.action;
 
-import java.util.Map;  
 import com.opensymphony.xwork2.ActionContext; 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -67,9 +66,7 @@ public class LoginAction extends ActionSupport {
 		if(user.getUserName() != null){
 			
 			  //记录用户登录信息 
-			  Map<String, Object> attibutes = ActionContext.getContext().getSession();
-			
-              attibutes.put("userName", user.getUserName());
+			  ActionContext.getContext().getSession().put("userName", user.getUserName());
               
               //判断登陆的为管理员还是用户
 			  if(user.getRole().equals("0")) {

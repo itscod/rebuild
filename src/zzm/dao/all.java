@@ -114,7 +114,7 @@ public interface all {
 
 		 */
 		
-		public Fruits findFruit(String fruitID);
+		public Fruits findFruit(String fruitName);
 		
 		/**
 
@@ -162,7 +162,7 @@ public interface all {
 
 		 */
 		
-		public int update(Fruits fruit,Integer fruitID);
+		public int update(Fruits fruit,String fruitName);
 		
 		/**
 

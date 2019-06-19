@@ -14,14 +14,14 @@
 	  <div class="layui-form-item layui-form-text">
 	    <label class="layui-form-label">管理员</label>
 	    <div class="layui-input-inline">
-	      <input class="layui-input" value="${user.userName }" name="userName" readonly/>
+	      <input class="layui-input" id="userName" name="userName" readonly/>
 	    </div>
 	  </div>
 	  
 	  <div class="layui-form-item layui-form-text">
 	    <label class="layui-form-label">密码</label>
 	    <div class="layui-input-inline">
-	      <input class="layui-input" value="${user.password }" type="password" name="password"/>
+	      <input class="layui-input" id="password" type="password" name="password"/>
 	    </div>
 	  </div>
 	  
@@ -43,21 +43,21 @@
 	  <div class="layui-form-item layui-form-text">
 	    <label class="layui-form-label">电话号码</label>
 	    <div class="layui-input-inline">
-	      <input class="layui-input" value="${user.userPhone }" name="userPhone"/>
+	      <input class="layui-input" id="userPhone" name="userPhone"/>
 	    </div>
 	  </div>
 	  
 	  <div class="layui-form-item layui-form-text">
 	    <label class="layui-form-label">家庭地址</label>
 	    <div class="layui-input-inline">
-	      <input class="layui-input" value="${user.userPress }" name="userPress"/>
+	      <input class="layui-input" id="userPress" name="userPress"/>
 	    </div>
 	  </div>
 	  
 	  
 	  <div class="layui-form-item">
 	    <div class="layui-input-block">
-	      <button class="layui-btn" lay-filter="demo1" lay-submit="">提交修改</button>
+	      <button class="layui-btn" lay-filter="edit" lay-submit="">提交修改</button>
 	    </div>
 	  </div>
 	</form>
@@ -68,6 +68,27 @@
 	layui.use('form',function(){
 	        var form = layui.form
 	        form.render();
+	        
+	      //传值回页面并且关闭
+		    var index = parent.layer.getFrameIndex(window.name);
+		    from.on('submit(edit)',function(data){
+		    	var loading = layui.load(0,{shade: false});
+		    	//提交到数据库进行修改
+		    	$.post('fruit_edit.action',data.field,function(data){
+		    		console.log(data);
+		    		if(data.integer > 0){
+		    			layer.close(loading);
+		    			//重载页面
+		    			window.parent.location.reload();
+		    			layer.msg('修改成功！');
+		    			//关闭
+		    			var index = parent.layui.getFrameIndex(window,name);
+		    			parent.layer.close(index);
+		    			
+		    		}
+		    	});
+		    	return false;
+		    });
 	});
 </script>
 </body>

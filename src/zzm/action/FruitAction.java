@@ -4,47 +4,26 @@ import java.util.List;
 
 import com.alibaba.fastjson.JSONObject;
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
 
 import zzm.dao.FruitDao;
 import zzm.model.Fruits;
 import zzm.model.JsonData;
 
 
-public class FruitAction extends ActionSupport{
-	
-	private static final long serialVersionUID = 1L;
+public class FruitAction extends ActionSupport implements ModelDriven<Fruits>{
 
-	private Fruits fruits;
-	
-	private List<Fruits> list;
+	private Fruits fruits =new Fruits();
+	  public Fruits getModel() { return fruits; }
 	
 	private JSONObject jsonObject;
-	
-	public List<Fruits> getList() {
-		return list;
-	}
-
-	public void setList(List<Fruits> list) {
-		this.list = list;
-	}
-	
 	public JSONObject getJsonObject() {
 		return jsonObject;
 	}
-
 	public void setJsonObject(JSONObject jsonObject) {
 		this.jsonObject = jsonObject;
 	}
 	
-	
-
-	public Fruits getFruits() {
-		return fruits;
-	}
-
-	public void setFruits(Fruits fruits) {
-		this.fruits = fruits;
-	}
 
 	/**
 
@@ -117,15 +96,13 @@ public class FruitAction extends ActionSupport{
 
 	public String delete() throws Exception{
 		
-		Fruits fruit = new Fruits();
-		
 		FruitDao fruitdao = new FruitDao();
 
-		int i=fruitdao.delete(fruit.getFruitID());
+		int i=fruitdao.delete(fruits.getFruitID());
 
 		if(i>0){
 
-			return "delete";
+			return "success";
 
 		}else{
 
@@ -150,9 +127,9 @@ public class FruitAction extends ActionSupport{
 		
 		Fruits fruit = new Fruits();
 				
-		fruit = fruitdao.findFruit(fruit.getFruitID());
+		fruit = fruitdao.findFruit(fruit.getFruitName());
 		
-		int i=fruitdao.update(fruit,fruit.getFruitID());
+		int i=fruitdao.update(fruit,fruit.getFruitName());
 
 		if(i>0){
 

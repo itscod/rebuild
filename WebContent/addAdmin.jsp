@@ -18,7 +18,7 @@
 	  <div class="layui-form-item layui-form-text">
 	    <label class="layui-form-label">管理员</label>
 	    <div class="layui-input-inline">
-	      <input class="layui-input" name="user.userName" lay-verify="userName" placeholder="请输入昵称/真实姓名"/>
+	      <input class="layui-input" name="user.userName" lay-verify="userName" id="userName" placeholder="请输入昵称/真实姓名"/>
 	    </div>
 	  </div>
 	  
@@ -61,7 +61,7 @@
 	  
 	  <div class="layui-form-item">
 	    <div class="layui-input-block">
-	      <button class="layui-btn" type="submit" lay-submit="" lay-event="submit">立即提交</button>
+	      <button class="layui-btn" type="submit" lay-submit="" lay-filter="test" lay-event="submit" onclick="return false;">立即提交</button>
 	      <button class="layui-btn layui-btn-primary" type="reset">重置</button>
 	    </div>
 	  </div>
@@ -71,6 +71,39 @@
 <!-- -------------------表单校验----------------------- -->
 <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
 <script src="layui/layui.js" charset="utf-8"></script>
+
+<!-- 异步验证用户名是否已被注册过 -->
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		$('#userName').blur(function(){
+			var userName = $("#userName").val();
+
+		    $.ajax({
+		        url : "${pageContext.request.contextPath}/registerAction_findOne.action", //后台查询验证的方法
+		        data : {
+		            "userName" : userName
+		        }, //携带的参数
+		        type : "post",
+		        success : function(msg) {
+		            //根据后台返回前台的msg给提示信息加HTML
+		            if ("true" != msg) {
+		                // 账号已经存在
+		                alert("抱歉，" + userName + "已被注册，请更换！");
+		            } else {
+		                
+		                
+		            }
+		        }
+		    });
+		});
+		
+	})
+
+</script>
+<!-- end -->
+
+
 <script type="text/javascript">
 	layui.use('form', function(){
 		var form = layui.form;
@@ -124,15 +157,37 @@
 	}); 
 </script>
 <script>
-	//监听按钮
-	form.on('submit', function(obj){
-	    layer.msg("添加成功，请返回管理员信息表");
-	});	
+	//渲染表单
+	
+	layui.use('form', function(){
+	    var form = layui.form;
+	   
+	});
+	    //监听提交
+
+        form.on('submit(test)', function(data) {
+
+            console.log(data.field);
+
+            layer.confirm("确认要提交吗?", {
+
+                title: "添加商品"
+
+                ,yes:function () {
+
+                    layer.msg("成功添加！");
+
+                }
+
+          });
+
+
+
 	//监听radio
 	form.on('radio(filter)', function(data){
 		  console.log(data.elem); //得到radio原始DOM对象
 		  console.log(data.value); //被点击的radio的value值
-	}); 
+	}) 
 </script>
 
 </body>

@@ -22,7 +22,7 @@
 </script>
  
 <script id="barDemo" type="text/html">
-  <a class="layui-btn layui-btn-xs" lay-event="edit" lay-event="edit">编辑</a>
+  <a class="layui-btn layui-btn-xs" lay-event="edit" lay-event="edit" id="edit">编辑</a>
   <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
               
@@ -32,7 +32,7 @@
 <script>
 layui.use('table', function(){
   var table = layui.table;
-  
+  var $ = layui.jquery;
   table.render({
 	id: 'fruitTable'
     ,elem: '#test'
@@ -77,57 +77,63 @@ layui.use('table', function(){
     if(obj.event === 'del'){
        //重载本级表格
       layer.confirm('您确定删除吗', function(index){
-
-      	layer.msg("删除成功");//提示
-
+    	  
           obj.del(); //删除行
 
           layer.close(index);
           
-          url:'fruit_delete.action'
+          $.ajax({
 
-          table.reload('fruitTable',{page:{curr:1}}); //重载表格,第一个参数是表格id
+              url:"fruit_delete.action",
+              
+              type: 'post',
+              
+              data: {
+            	  "fruitID": data.fruitID
+              },
+          
+              dataType: "json",
+              
+              success: function(data){
+            	  layer.msg("删除成功!");
+              }
+              
+          });
+
+          /* table.reload('fruitTable',{page:{curr:1}}); //重载表格,第一个参数是表格id */
           
    	   });
       } else if(obj.event === 'edit'){
-    	  layer.open({
-    		  title: '编辑信息',
-    		  type: 2,
-    		  area: ['600px','400px'],
-    		  fixed: false, //不固定
-    		  maxmin: true,
-    		  content: 'modFruit.jsp'
-    	  });
+    	  
     	  /**
-    	   * 点击详情 弹窗 账户信息
+    	   * 点击编辑 弹窗 商品信息
     	   */
-    	  $('#ljTable tbody').on('click','.detailsClick',function(){
-    	      var _this = $(this),
-    	          data =_this.parent().siblings(),
-    	          arr = [];
-    	      for(var i = 1; i< data.length; i++){
-    	          // console.log($(data[i]).text());
-    	          arr.push($(data[i]).text());//拿到点击按钮的当前那条信息的内容 放到一个数组里
-    	      }
-    	      // console.log(arr);
-    	      layer.open({
-    	          type: 2,
-    	          skin: 'CLYM-style',
-    	          area: ['600px','400px'],
-    	          title: '编辑信息',
-    	          content: 'modFruit.jsp',
-    	          success: function(layero, index){
-    	              var body = layer.getChildFrame('body',index);//建立父子联系
-    	              var iframeWin = window[layero.find('iframe')[0]['name']];
-    	              // console.log(arr); //得到iframe页的body内容
-    	              // console.log(body.find('input'));
-    	              var inputList = body.find('input');
-    	              for(var j = 0; j< inputList.length; j++){
-    	                  $(inputList[j]).val(arr[j]);
-    	              }
-    	          }
-    	      });
-    	  });
+    	   
+    	  layer.open({
+    		  
+    		  type: 2,
+    		  
+    		  title: '编辑商品信息',
+    		  
+    		  shift:1,
+    		  
+    		  area: ['600px', '450px'],
+    		  
+    		  shadeClose: true,
+    		  
+    		  content: 'modFruit.jsp',//iframe的url
+    		  
+    		  success: function(layero,index) {
+    		            var body = layui.layer.getChildFrame('body', index);
+    		            console.log(JSON.stringify(data));
+    		            //渲染弹出层
+    		     body.find("#fruitName").val(data.fruitName);
+    		     body.find("#origin").val(data.origin);
+    		     body.find("#price").val(data.price);
+    		     body.find("#introduce").val(data.introduce);
+    		  }
+    		 
+    		}); 
 
       }
   });

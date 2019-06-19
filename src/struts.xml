@@ -9,6 +9,29 @@
 		        <!--Configuration for the default packet.-->
 
 		<package name="default" namespace="/"  extends="struts-default,json-default">
+		
+			<!-- 配置拦截器 -->
+	        <interceptors>
+	        
+	            <!-- 配置登录拦截器 -->
+	            <interceptor name="loginInterceptor" class="zzm.interceptor.LoginInterceptor"></interceptor>
+	            
+	            <interceptor-stack name="myInterceptorStack">
+	                <interceptor-ref name="defaultStack"></interceptor-ref>
+	                <interceptor-ref name="loginInterceptor"></interceptor-ref>
+	            </interceptor-stack>
+	            
+	        </interceptors>
+	        
+	        <!-- 修改默认拦截器 -->
+	        <default-interceptor-ref name="myInterceptorStack"></default-interceptor-ref>
+	        
+	        <!-- 设置全局返回值 -->
+	        <global-results>
+	            <result name="login">/login.jsp</result>
+	        </global-results>
+
+			
 			
 			<!-- 登录 -->
 			<action name="loginAction" class="zzm.action.LoginAction" method="login">
@@ -18,21 +41,73 @@
 				<result name="adminlogin">/backstageMS.jsp</result>
 
 				<result name="loginerror">/login.jsp</result>
+				
+				<interceptor-ref name="defaultStack"></interceptor-ref>
 
 			</action>
 			
+			<!-- 进商品主页 -->
 			<action name="Iteration" class="cn.Iteration">
 
 				<result>/boot.jsp</result>
 
 			</action>
+			<!-- 加入购物车 -->
+			<action name="PurchaseAction" class="zsy.action.PurchaseAction">
+ 
+				<result name="yes" type= "redirectAction">Iteration</result>
+
+			</action>
+			<!-- 购物车 -->
+			<action name="ShoppingCart" class="zsy.action.ShoppingCart">
+ 
+				<result>/ShoppingCart.jsp</result>
+
+			</action>
+			<!-- 下单 -->
+			<action name="Consumption" class="zsy.action.Consumption">
+ 
+				<result type="redirectAction">ShoppingCart</result>
+
+			</action>
+			<!-- 删除购物车 -->
+			<action name="DeleteCspt" class="zsy.action.DeleteCspt">
+ 
+				<result type="redirectAction">ShoppingCart</result>
+
+			</action>
+			<!-- 购买记录 -->
+			<action name="OrderAction" class="zsy.action.OrderAction">
+ 
+				<result>/PurchaseRecord.jsp</result>
+
+			</action>
+			<action name="Search" class="zsy.action.Search">
+ 
+				<result>/PurchaseRecord.jsp</result>
+
+			</action>
+			<!-- 个人信息 -->
+			<action name="Personal" class="zsy.action.Personal">
+ 
+				<result>/Personal.jsp</result>
+
+			</action>
+			<!-- 修改个人信息 -->
+			<action name="Modify" class="zsy.action.Modify">
+ 
+				<result type="redirectAction">Personal</result>
+
+			</action>
 			
 			<!-- 用户注册 -->
-			<action name="registerAction" class="zzm.action.RegisterAction" method="addUser">
+			<action name="registerAction_*" class="zzm.action.RegisterAction" method="{1}">
 
 				<result name="add">/login.jsp</result>
 
 				<result name="error">/register.jsp</result>
+				
+				<interceptor-ref name="defaultStack"></interceptor-ref>
 
 			</action>
 			
@@ -40,6 +115,8 @@
 			<action name="logout" class="zzm.action.LogoutAction">
 
 				<result name="success">/login.jsp</result>
+				
+				<interceptor-ref name="defaultStack"></interceptor-ref>
 
 			</action>
 			
@@ -48,11 +125,9 @@
 
 				<result name="add">/addAdmin.jsp</result>
 				
-				<result name="delete" type="redirectAction">admin_findAll</result>
+				<result name="delete">/admin.jsp</result>
 				
-				<result name="edit" type="redirectAction">admin_findAll</result>
-				
-				<result name="value">/modAdmin.jsp</result>
+				<result name="edit">/admin.jsp</result>
 				
 				<result name="admin" type="json">
 
@@ -70,11 +145,9 @@
 
 				<result name="add">/addFruit.jsp</result>
 				
-				<result name="delete" type="redirectAction">fruit_findAll</result>
+				<result name="delete">/fruit.jsp</result>
 				
-				<result name="edit"></result>
-				
-				<result name="value">/modFruit.jsp</result>
+				<result name="edit">/fruit.jsp</result>
 				
 				<result name="fruit" type="json">
 
@@ -90,9 +163,7 @@
 			<!-- 商品库存表数据的查看，修改 -->
 			<action name="stock_*" class="zzm.action.StockAction" method="{1}">
 
-				<result name="edit" type="redirectAction">stock_stock</result>
-				
-				<result name="value">/modStock.jsp</result>
+				<result name="edit">/modStock.jsp</result>
 				
 				<result name="stock" type="json">
 

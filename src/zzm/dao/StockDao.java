@@ -48,7 +48,7 @@ public class StockDao {
 		//将修改后的值更新到数据库
 		public int updateStock(Fruits fruit,Integer fruitID) {
 			
-			String sql="update fruitinfo set stock=? where fruitID='"+fruitID+"'";
+			String sql="update fruitinfo set stock='?' where fruitID='"+fruitID+"'";
 			
 			int i = 0;
 			

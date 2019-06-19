@@ -55,7 +55,7 @@
 	  
 	  <div class="layui-form-item">
 	    <div class="layui-input-block">
-	      <button class="layui-btn" lay-filter="demo1" lay-submit="">立即提交</button>
+	      <button class="layui-btn" lay-submit lay-filter="test">立即提交</button>
 	      <button class="layui-btn layui-btn-primary" type="reset">重置</button>
 	    </div>
 	  </div>
@@ -68,23 +68,40 @@
 	    var form = layui.form;	
         //渲染select事件
         form.render('select','kind');
-        
-        
-    });
-</script>
-<script>
-	layui.use('form', function(){
-	    var form = layui.form;
-        
+      
+        //校验功能
 	    form.verify({
 	  		  //单价校验
 	  		  price:[
 	  		    /^[0-9]*[1-9][0-9]*$/
 	 		    ,'单价必须为正整数'
 	  		  ] 
-	  	}; 
-        
-    });
+	  	}); 
+	}); 
+</script>
+<script>
+
+	//渲染表单
+	layui.use('form', function(){
+	    var form = layui.form;
+	});
+	
+	//监听提交
+    form.on('submit(test)', function(data) {
+
+        console.log(data.field);
+
+        layer.confirm("确认要提交吗?", {
+
+            title: "添加商品"
+
+            ,yes:function () {
+
+                layer.msg("成功添加！");
+
+            }
+
+      });
 </script>
 </body>
 </html>
